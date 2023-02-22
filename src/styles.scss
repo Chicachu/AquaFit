@@ -1,0 +1,14 @@
+@import 'colors.scss';
+
+$content-width: 931px;
+
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+a:hover, a:link {
+  text-decoration: none;
+}
+
+
