@@ -1,7 +1,0 @@
-lotus: <a href="https://www.flaticon.com/free-icons/lotus" title="lotus icons">Lotus icons created by Freepik - Flaticon</a>
-dumbbell: <a href="https://www.flaticon.com/free-icons/gym" title="gym icons">Gym icons created by Vitaly Gorbachev - Flaticon</a>
-swimming: <a href="https://www.flaticon.com/free-icons/swimming" title="swimming icons">Swimming icons created by Icon Box - Flaticon</a>
-health: <a href="https://www.flaticon.com/free-icons/cross" title="cross icons">Cross icons created by Good Ware - Flaticon</a>
-clock: <a href="https://www.flaticon.com/free-icons/clock" title="clock icons">Clock icons created by Kirill Kazachek - Flaticon</a>
-phone: <a href="https://www.flaticon.es/iconos-gratis/contacto" title="contacto iconos">Contact icons created by okaigraphic - Flaticon</a>
-location: <a href="https://www.flaticon.es/iconos-gratis/ubicacion" title="ubicación iconos">Location icons created by rukanicon - Flaticon</a>
