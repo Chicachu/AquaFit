@@ -1,14 +1,50 @@
 @import 'colors.scss';
 
 $content-width: 931px;
+$footer-height: 290px;
+$total-header-height: 175px;
+
+$header-blur: 10px;
+$p-blur: 20px;
 
 .flex {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 a:hover, a:link {
   text-decoration: none;
+}
+
+.ml-2 {
+  margin-left: 10px;
+}
+
+.mr-2 {
+  margin-right: 10px;     
+}
+
+.blue {
+  color: $blue;
+}
+
+.green {
+  color: $green;
+}
+
+.pink {
+  color: $pink;
+}
+
+.light-text-shadow {
+  text-shadow: 2px 0 $header-blur #fff, -2px 0 $header-blur #fff, 0 2px $header-blur #fff, 0 -2px $header-blur #fff,
+      1px 1px $header-blur #fff, -1px -1px $header-blur #fff, 1px -1px $header-blur #fff, -1px 1px $header-blur #fff;
+}
+
+.heavy-text-shadow {
+  text-shadow: 2px 0 $p-blur #fff, -2px 0 $p-blur #fff, 0 2px $p-blur #fff, 0 -2px $p-blur #fff,
+      1px 1px $p-blur #fff, -1px -1px $p-blur #fff, 1px -1px $p-blur #fff, -1px 1px $p-blur #fff,
+      3px 0 $p-blur #fff, -3px 0 $p-blur #fff, 0 3px $p-blur #fff, 0 -3px $p-blur #fff;
 }
 
 

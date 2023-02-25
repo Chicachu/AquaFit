@@ -1,0 +1,14 @@
+<div class="info-container">
+  <h1 class="light-text-shadow">What you can expect</h1>
+  <div *ngFor="let infoGraphic of infoGraphics" class="info-content">
+    <div>
+      <img src="{{infoGraphic.imagePath}}" />
+    </div>
+    <div>
+      <h2 class="light-text-shadow">{{infoGraphic.header}}</h2>
+      <p class="heavy-text-shadow">{{infoGraphic.description}}</p>
+    </div>
+  </div>
+
+  <app-get-started-banner></app-get-started-banner>
+</div>

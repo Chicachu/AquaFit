@@ -1,16 +1,15 @@
 {
   "ExpandedNodes": [
-    "",
     "\\src",
-    "\\src\\app",
-    "\\src\\app\\footer",
-    "\\src\\app\\header",
-    "\\src\\app\\navigation",
-    "\\src\\app\\splash",
+    "\\src\\app\\content",
+    "\\src\\app\\content\\get-started-banner",
+    "\\src\\app\\content\\group-classes",
+    "\\src\\app\\content\\splash",
+    "\\src\\app\\content\\splash\\benefits",
+    "\\src\\app\\content\\splash\\info",
     "\\src\\app\\types",
     "\\src\\assets",
     "\\src\\assets\\testimonials"
   ],
-  "SelectedNode": "\\src",
   "PreviewInSolutionExplorer": false
 }

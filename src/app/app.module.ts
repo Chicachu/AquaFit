@@ -6,8 +6,8 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { InfoComponent } from './header/info/info.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { SplashComponent } from './splash/splash.component';
 import { FooterComponent } from './footer/footer.component';
+import { ContentModule } from './content/content.module'
 
 @NgModule({
   declarations: [
@@ -15,12 +15,12 @@ import { FooterComponent } from './footer/footer.component';
     HeaderComponent,
     InfoComponent,
     NavigationComponent,
-    SplashComponent,
     FooterComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ContentModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -14,11 +14,7 @@ img {
 }
 
 .header {
-  background: url('../../assets/pool-background.png') no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  background-color: rgba(255, 255, 255, 0.75);
 }
 
 @media only screen and (min-width: 768px) {

@@ -3,55 +3,16 @@
 
 .content-container {
   flex-direction: column;
-}
-
-.splash-container {
-  background: url('../../assets/splash.jpg') no-repeat center center fixed;
+  background: url('../../assets/pool-background.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  height: 500px;
+  width: 100%;
+  display: flex;
 }
 
-.content-container, .info-container, .testimonials-container, .splash-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.hr {
-    width: 100%;
-    height: 30px;
-    background-color: $dark-blue;
-    margin-bottom: -15px;
-    z-index: 5;
-    border: 1px solid $dark-blue;
-}
-
-.info-container, .splash-container {
-  margin-bottom: -20px;
-}
-
-.info-container > div {
-    background: white;
-    padding: 40px 0;
-}
-
-.info-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    width: 100%;
-    background: white;
-}
-
-.info-content img {
-  height: 80px;  
-}
-
-.testimonials, .splash, .info-container > div {
+.testimonials, .splash {
   width: 100%;
 }
 
@@ -92,19 +53,11 @@
 
 @media only screen and (min-width: 768px) {
     .content-container {
-        background: url('../../assets/splash.jpg') no-repeat center center fixed;
+        background: url('../../assets/pool-background.jpg') no-repeat center center fixed;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
         background-size: cover;
-    }
-
-    .testimonials, .splash, .info-container > div {
-        width: $content-width;
-    }
-
-    .hr {
-       width: $content-width + 50px;
     }
 
     .splash-container {
@@ -115,16 +68,6 @@
         background-size: unset;
     }
      
-    .info-container div:first-child {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-  .info-content {
-      width: calc($content-width / 2);
-  }
-
     .testimonials p {
         font-size: 18px;
         text-indent: 20px;

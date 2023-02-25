@@ -1,0 +1,82 @@
+@import '../../../../colors.scss';
+@import '../../../../styles.scss';
+
+.splash-container {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 30px solid $dark-blue;
+  padding: 50px;
+}
+
+h1, p {
+  color: $blue;
+  margin: 15px;
+  font-weight: bold;
+}
+
+p {
+  color: black;
+}
+
+h1 {
+  font-size: 26px;
+}
+
+p {
+  font-size: 18px;
+  text-align: center;
+  width: 250px;
+}
+
+.benefit-1, .benefit-2, .benefit-3, .benefit-header {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.highlight {
+  color: $pink;
+  font-weight: bolder;
+}
+
+.intro {
+}
+
+@media only screen and (min-width: 768px) {
+  .benefits-container {
+    width: 80vh;
+  }
+
+  .benefit-header {
+    margin-left: 6%;
+    justify-content: start;
+  }
+
+  .benefit-1 {
+    margin-left: 10%;
+    justify-content: start;
+  }
+
+  .benefit-2 {
+    justify-content: center;
+  }
+
+  .benefit-3 {
+    justify-content: end;
+  }
+
+  .benefit-3 p {
+    margin-right: 10%;
+  }
+
+  h1 {
+    font-size: 50px;
+  }
+
+  p {
+    font-size: 16px;
+    width: 650px;
+  }
+}

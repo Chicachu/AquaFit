@@ -2,38 +2,11 @@ import { Component } from '@angular/core';
 import { BlockInfo } from '../types/block-info';
 
 @Component({
-  selector: 'app-splash',
-  templateUrl: './splash.component.html',
-  styleUrls: ['./splash.component.scss']
+  selector: 'app-content',
+  templateUrl: './content.component.html',
+  styleUrls: ['./content.component.scss']
 })
-export class SplashComponent {
-  infoGraphics: BlockInfo[] = [
-    {
-      header: "Cardio",
-      description: "Even if you don't swim, everyone gets cardio.",
-      imagePath: "../../assets/icons/swimming.png"
-    },
-    {
-      header: "Strength",
-      description: "No matter who you are, improve your strength.",
-      imagePath: "../../assets/icons/dumbell.png"
-    },
-    {
-      header: "Yoga",
-      description: "Recenter yourself with relaxing yoga.",
-      imagePath: "../../assets/icons/lotus.png"
-    },
-    {
-      header: "Health",
-      description: "Improve your health, your energy, and your outlook on life.",
-      imagePath: "../../assets/icons/hospital.png"
-    },
-    {
-      header: "Variety",
-      description: "No two classes are the same, never get bored.",
-      imagePath: "../../assets/icons/variety.png"
-    }
-  ]
+export class ContentComponent {
   testimonials: BlockInfo[] = [
     {
       header: "Erica from Seattle",
