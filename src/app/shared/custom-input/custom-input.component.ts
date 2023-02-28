@@ -14,9 +14,7 @@ export class CustomInputComponent {
   asterisk = ''
 
   ngOnInit() {
-    console.log("CHECKING REQUIRED")
     if (this.required) {
-      console.log("IS REQUIRED")
       this.asterisk = '*'
     }
   }

@@ -3,6 +3,7 @@
 $content-width: 931px;
 $footer-height: 290px;
 $total-header-height: 175px;
+$nav-height: 45px;
 
 $header-blur: 10px;
 $p-blur: 20px;
@@ -10,6 +11,14 @@ $p-blur: 20px;
 .flex {
   display: flex;
   align-items: center;
+}
+
+.inner-content-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - $footer-height - 10px);
+  border-top: $nav-height solid $dark-blue;
 }
 
 a:hover, a:link {
@@ -47,4 +56,12 @@ a:hover, a:link {
       3px 0 $p-blur #fff, -3px 0 $p-blur #fff, 0 3px $p-blur #fff, 0 -3px $p-blur #fff;
 }
 
+.form {
+  background-color: rgba(255, 255, 255, 0.65);
+  width: fit-content;
+  height: fit-content;
+  padding: 25px;
+  border: 2px solid $dark-blue;
+  border-radius: 5px;
+}
 

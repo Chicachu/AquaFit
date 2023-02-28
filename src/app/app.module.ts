@@ -4,18 +4,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ContentModule } from './content/content.module';
 import { LoginModule } from './login/login.module';
+import { RegisterModule } from './register/register.module';
 import { SharedModule } from './shared/shared.module';
+import { CustomButtonComponent } from './custom-button/custom-button.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    CustomButtonComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     SharedModule,
     ContentModule,
-    LoginModule
+    LoginModule,
+    RegisterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

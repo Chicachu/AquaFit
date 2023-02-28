@@ -3,6 +3,7 @@
 $border-width: 2px;
 $input-width: 200px;
 $border-radius: 5px;
+$input-select-color: $green;
 
 .custom-input-container {
   display: inline-block;
@@ -20,26 +21,40 @@ $border-radius: 5px;
 .custom-input-container:focus, 
 .custom-input-container:focus-visible, 
 .custom-input-container:focus-within {
-  outline: $pink solid 2px;
+  box-shadow: 0 1px white, 0 -3px white, 1px 1px white, -1px -2px white, 1px -2px white, -1px -1px white,
+              0 3px $input-select-color, 0 -5px $input-select-color, 3px 1px $input-select-color, -3px -3px $input-select-color, 3px -3px $input-select-color, -3px 1px $input-select-color;
+}
+
+.label-container {
+  position: absolute;
+  top: -8px;
+  left: 5px;
+  width: 100%;
+  display: flex;
+}
+
+.partial-border-container {
+  width: 100%;
+  position: relative;
+  top: 6px;
+  right: 4px;
+  margin-left: 4px;
 }
 
 .partial-border {
-  width: 112px;
   border-top: $border-width solid $dark-blue;
   border-top-right-radius: $border-radius;
   right: 0;
   top: -1px;
   height: 30px;
-  position: absolute;
 }
 
 label {
-  position: absolute;
-  top: -8px;
-  left: 5px;
   border: none;
-  display: block;
-  width: $input-width;
+  width: fit-content;
+  min-width: max-content;
+  height: 30px;
+  margin-right: 3px;
 }
 
 input {
