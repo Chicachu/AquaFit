@@ -1,4 +1,5 @@
 @import '../../../../colors.scss';
+
 $p-blur: 25px;
 .info-container {
   display: flex;
@@ -13,7 +14,7 @@ $p-blur: 25px;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  justify-content: start;
+  justify-content: flex-start;
   overflow-wrap: break-word;
   box-sizing: border-box;
   width: 100%;

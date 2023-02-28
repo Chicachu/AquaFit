@@ -1,11 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ContentComponent } from './content.component';
 import { GroupClassesComponent } from './group-classes/group-classes.component';
 import { PrivateClassesComponent } from './private-classes/private-classes.component';
 import { SplashComponent } from './splash/splash.component';
 
 const routes: Routes = [
-  { path: '', component: SplashComponent },
+  { 
+    path: '', component: ContentComponent,
+    children: [
+      { path: '', component: SplashComponent }
+    ]
+  },
   { path: 'group-classes', component: GroupClassesComponent },
   { path: 'private-classes', component: PrivateClassesComponent }
 ];

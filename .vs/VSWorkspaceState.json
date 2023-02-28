@@ -1,15 +1,16 @@
 {
   "ExpandedNodes": [
+    "",
     "\\src",
+    "\\src\\app",
     "\\src\\app\\content",
-    "\\src\\app\\content\\get-started-banner",
-    "\\src\\app\\content\\group-classes",
     "\\src\\app\\content\\splash",
     "\\src\\app\\content\\splash\\benefits",
     "\\src\\app\\content\\splash\\info",
+    "\\src\\app\\content\\splash\\info\\get-started-banner",
     "\\src\\app\\types",
-    "\\src\\assets",
-    "\\src\\assets\\testimonials"
+    "\\src\\assets"
   ],
+  "SelectedNode": "\\src\\app\\content\\splash\\info\\get-started-banner\\get-started-banner.component.scss",
   "PreviewInSolutionExplorer": false
 }

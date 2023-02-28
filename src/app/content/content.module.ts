@@ -1,31 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ContentComponent } from './content.component';
-import { SplashComponent } from './splash/splash.component'
 import { RouterModule } from '@angular/router';
 import { ContentRoutingModule } from './content-routing.module';
-import { InfoComponent } from './splash/info/info.component';
-import { GetStartedBannerComponent } from './get-started-banner/get-started-banner.component';
 import { GroupClassesComponent } from './group-classes/group-classes.component';
 import { PrivateClassesComponent } from './private-classes/private-classes.component';
-import { BenefitsComponent } from './splash/benefits/benefits.component';
-
-
+import { SplashModule } from './splash/splash.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
     ContentComponent,
-    SplashComponent,
-    InfoComponent,
-    GetStartedBannerComponent,
     GroupClassesComponent,
-    PrivateClassesComponent,
-    BenefitsComponent
+    PrivateClassesComponent
   ],
   imports: [
     CommonModule,
     ContentRoutingModule,
     RouterModule,
+    SharedModule,
+    SplashModule
   ],
   exports: [
     ContentComponent

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BlockInfo } from '../types/block-info'
+import { BlockInfo } from '../../types/block-info'
 
 @Component({
   selector: 'app-header',
