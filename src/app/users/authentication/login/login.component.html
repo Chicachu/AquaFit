@@ -1,0 +1,26 @@
+<div class="inner-content-container">
+  <div class="form" [formGroup]="loginGroup">
+    <h1 class="light-text-shadow">Login</h1>
+    <div class="form-control-container">
+      <app-custom-input 
+        [id]="'usr'" [label]="'Username'" 
+        [type]="usernameInputType" [required]="true" formControlName="username" 
+        [error]="loginGroup.controls['username'].invalid && loginGroup.controls['username'].touched">
+      </app-custom-input>
+      <p *ngIf="isInvalid(loginGroup.controls['username'], 'required')" class="errorMessage">Username is required</p>
+      <p *ngIf="isInvalid(loginGroup.controls['username'], 'email')" class="errorMessage">Enter a valid email address</p>
+    </div>
+    <div class="form-control-container">
+      <app-custom-input 
+        [id]="'pswd'" [label]="'Password'" 
+        [type]="passwordInputType" [required]="true" formControlName="password"
+        [error]="loginGroup.controls['password'].invalid && loginGroup.controls['password'].touched">
+      </app-custom-input>
+      <p *ngIf="isInvalid(loginGroup.controls['password'], 'required')" class="errorMessage">Password is required</p>
+      <p *ngIf="isInvalid(loginGroup.controls['password'], 'minlength')" class="errorMessage">Must be at least 8 characters</p>
+    </div>
+
+    <app-custom-button [text]="'Submit'" (click)="login($event)"></app-custom-button>
+    <p>Not registered? <a [routerLink]="['/register']">Sign Up</a></p>
+  </div>
+</div>

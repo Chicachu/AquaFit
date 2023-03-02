@@ -1,0 +1,9 @@
+@import '../../../colors.scss';
+
+button {
+  padding: 4px 25px;
+  background-color: $dark-blue;
+  border: 1px solid $blue;
+  color: white;
+  border-radius: 5px;
+}

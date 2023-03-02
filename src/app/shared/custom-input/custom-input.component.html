@@ -1,12 +1,12 @@
 <div>
-  <div class="custom-input-container" tabindex="0">
+  <div class="custom-input-container" tabindex="0" [ngClass]="{error: error}">
     <div class="label-container">
-      <label for="id" class="light-text-shadow">{{label}}</label>
-      <label>{{asterisk}}</label>
+      <label for="{{id}}" class="light-text-shadow">{{label}}</label>
+      <label class="asterisk">{{asterisk}}</label>
       <div class="partial-border-container">
         <div class="partial-border"></div>
       </div>
     </div>
-    <input type="type" name="id" />
+    <input type="{{type}}" name="{{id}}" id="{{id}}" (input)="onChange($event)" (blur)="touched()" value="{{value}}" [placeholder]="placeholder"/>
   </div>
 </div>

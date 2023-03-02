@@ -2,24 +2,22 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ContentModule } from './content/content.module';
-import { LoginModule } from './login/login.module';
-import { RegisterModule } from './register/register.module';
+import { ContentModule } from './info-content/content.module';
 import { SharedModule } from './shared/shared.module';
-import { CustomButtonComponent } from './custom-button/custom-button.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { AuthenticationModule } from './users/authentication/authentication.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    CustomButtonComponent
+    AppComponent
   ],
   imports: [
     AppRoutingModule,
+    AuthenticationModule,
+    BrowserAnimationsModule,
     BrowserModule,
     SharedModule,
     ContentModule,
-    LoginModule,
-    RegisterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

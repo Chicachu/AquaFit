@@ -1,15 +1,16 @@
-@import '../../colors.scss';
+@import '../../../../colors.scss';
 
 h1 {
   text-align: center;
-  margin-top: -5px;
-  margin-bottom: 15px;
+  margin-top: -2px;
+  margin-bottom: 0px;
   color: $blue;
 }
 
 p {
   text-align: center;
   width: 230px;
+  margin-top: 15px;
 }
 
 a {

@@ -7,7 +7,9 @@ import { BlockInfo } from '../../../types/block-info';
   styleUrls: ['./info.component.scss']
 })
 export class InfoComponent {
-  @Input() info: BlockInfo
+  @Input() info: BlockInfo & {
+    color: string
+  }
 
   constructor() {}
 }

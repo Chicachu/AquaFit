@@ -1,0 +1,25 @@
+@import '../../../../colors.scss';
+@import '../../../../styles.scss';
+
+h1 {
+  text-align: center;
+  margin-top: -5px;
+  margin-bottom: 15px;
+  color: $blue;
+}
+
+p {
+  text-align: center;
+  margin-top: 15px;
+}
+
+a {
+  color: $pink;
+}
+
+.errorMessage {
+  text-align: right;
+  width: 100%;
+  top: 32px;
+  right: 20px;
+}

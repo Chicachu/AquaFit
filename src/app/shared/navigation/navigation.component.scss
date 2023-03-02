@@ -27,12 +27,29 @@
   overflow: hidden;
 }
 
+.menu-right {
+  list-style-type: none;
+  margin-bottom: 0;
+  flex-direction: column;
+  max-height: 45px;
+  transition: all 0.3s ease-out;
+  overflow: hidden;
+}
+
 .nav a {
     font-size: 14px;
     font-weight: bold;
     margin: 10px;
     color: white;
     position: relative;
+}
+
+.login-wide {
+  display: none;
+}
+
+.login-mobile {
+  display: inline-block;
 }
 
 .nav img {
@@ -44,13 +61,17 @@
     height: $nav-height;
 }
 
+.end {
+  width: min-content;
+}
+
 @media only screen and (min-width: 768px) {
   .menu-button {
       display: none;
   }
 
   .menu {
-    width: $content-width;
+    width: $content-width - 60px;
   }
 
   .nav ul {
@@ -88,5 +109,13 @@
   a:hover::before {
     transform-origin: left;
     transform: scaleX(1);
+  }
+
+  .login-wide {
+    display: inline-block;
+  }
+  
+  .login-mobile {
+    display: none;
   }
 }
