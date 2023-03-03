@@ -6,6 +6,7 @@ import { ContentModule } from './info-content/content.module';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { AuthenticationModule } from './users/authentication/authentication.module';
+import { UserUpdateService } from './users/userUpdate.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { AuthenticationModule } from './users/authentication/authentication.modu
     SharedModule,
     ContentModule,
   ],
-  providers: [],
+  providers: [UserUpdateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

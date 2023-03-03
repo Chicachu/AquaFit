@@ -5,6 +5,7 @@ import { ResponseType } from 'src/environments/constants';
 import { CustomInputType } from '../../../shared/custom-input/custom-input-type';
 import { SharedService } from '../../../shared/shared.service';
 import { User } from '../../../types/user';
+import { UserUpdateService } from '../../userUpdate.service';
 import { AuthenticationService } from '../authentication.service';
 
 @Component({
@@ -19,7 +20,7 @@ export class LoginComponent {
   username: FormControl
   password: FormControl
 
-  constructor(private _sharedService: SharedService, private _authService: AuthenticationService, private _router: Router) {
+  constructor(private _sharedService: SharedService, private _authService: AuthenticationService, private _router: Router, private _userUpdateService: UserUpdateService) {
     this.loginGroup = new FormGroup({
       username: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(8)])
@@ -31,6 +32,10 @@ export class LoginComponent {
     if (!this.loginGroup.invalid) {
       this._authService.login(this.loginGroup.controls['username'].value, this.loginGroup.controls['password'].value).subscribe({
         next: (user: User) => {
+          console.log("USER::::")
+          console.log(user)
+          sessionStorage.setItem('user', JSON.stringify(user))
+          this._userUpdateService.user = user
           this._router.navigate(['/'])
         }, 
         error: (error) => {

@@ -3,8 +3,11 @@
     <li class="menu-button">
       <img src="../../assets/icons/menu.png" (click)="toggleMenu()" />
     </li>
-    <li class="login-mobile">
+    <li *ngIf="!userIsLoggedIn" class="login-mobile">
       <a [routerLink]="['login']">Login</a>
+    </li>
+    <li *ngIf="userIsLoggedIn" class="login-mobile">
+      <a [routerLink]="['profile']">Profile</a>
     </li>
     <li>
       <a href="">Group Classes</a>
@@ -17,8 +20,11 @@
     </li>
   </ul>
   <ul class="list-unstyled menu-right end login-wide">
-    <li>
+    <li *ngIf="!userIsLoggedIn">
       <a [routerLink]="['login']">Login</a>
+    </li>
+    <li *ngIf="userIsLoggedIn">
+      <a [routerLink]="['profile']">Profile</a>
     </li>
   </ul>
 </div>
