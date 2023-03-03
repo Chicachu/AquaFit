@@ -31,7 +31,7 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/normalize.css"
+              "src/toastr.scss"
 
             ],
             "scripts": []
@@ -101,7 +101,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/toastr.scss"
             ],
             "scripts": []
           }
