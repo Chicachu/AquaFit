@@ -11,13 +11,6 @@ li {
   display: inline-block;
   width: calc(100%/7 );
   text-align: center;
-  cursor: pointer;
-}
-
-li p {
-  text-align: end;
-  padding-right: 4px;
-  min-height: calc(100vh/7 - 50px);
 }
 
 .days {
@@ -43,11 +36,7 @@ h3 {
 }
 
 @media only screen and (min-width: 768px) {
-  li p {
-    padding: 10px;
-  }
-
   .days {
-    height: calc((100vh/7) - ($footer-height - 20px)/7);
+    height: calc((100vh/7) - ($footer-height - 25px)/7);
   }
 }

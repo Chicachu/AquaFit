@@ -15,6 +15,10 @@ export class SharedService {
     return moment(date).format('LL')
   }
 
+  formatTime(date: Date): string {
+    return moment(date).format('LT')
+  }
+
   validateEmail(email: string) {
     const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
     return emailRegex.exec(email)

@@ -8,13 +8,10 @@ import { httpBaseUrl } from 'src/environments/constants';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  baseUrl = httpBaseUrl + '/api'
 
-  constructor(private _http: HttpClient) {
-    
-  }
+  constructor(private _http: HttpClient) { }
 
   login(username: string, password: string): Observable<User> {
-    return this._http.post<User>(`${this.baseUrl}/auth/login`, { username, password }).pipe(take(1))
+    return this._http.post<User>(`${httpBaseUrl}/auth/login`, { username, password }).pipe(take(1))
   }
 }
