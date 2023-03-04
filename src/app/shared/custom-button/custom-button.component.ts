@@ -1,5 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Event } from '@angular/router';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-custom-button',
@@ -8,9 +7,4 @@ import { Event } from '@angular/router';
 })
 export class CustomButtonComponent {
   @Input() text: string
-  @Output() click = new EventEmitter<MouseEvent>()
-
-  clickButton(event: MouseEvent) {
-    this.click.emit(event)
-  }
 }

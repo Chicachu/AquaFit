@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Role } from 'src/app/types/enums/role';
 import { User } from 'src/app/types/user';
 import { UserUpdateService } from 'src/app/users/userUpdate.service';
 
@@ -17,8 +18,7 @@ export class NavigationComponent {
   constructor(private _userUpdateService: UserUpdateService) { }
 
   ngOnInit() {
-    this.userIsLoggedIn = !!this._userUpdateService.user
-    console.log(this.userIsLoggedIn)
+    this.userIsLoggedIn = this._userUpdateService.isUserLoggedIn
   }
 
   toggleMenu() {
@@ -28,5 +28,16 @@ export class NavigationComponent {
     } else {
       menu.style.maxHeight = this.expandedMaxHeight + 'px';
     }
+  }
+
+  getRouterLink() {
+    switch(this._userUpdateService.userRole) {
+      case Role.CLIENT: return "users/profile"
+      break;
+      case Role.ADMIN: return "users/admin"
+      break;
+    }
+    
+    return ""
   }
 }

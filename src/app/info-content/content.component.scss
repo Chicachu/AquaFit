@@ -1,16 +1,5 @@
 @import '../../colors.scss';
 
-.content-container {
-  flex-direction: column;
-  background: url('../../assets/pool-background.jpg') no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  width: 100%;
-  display: flex;
-}
-
 .testimonials, .splash {
   width: 100%;
 }
@@ -51,13 +40,6 @@
 }
 
 @media only screen and (min-width: 768px) {
-    .content-container {
-        background: url('../../assets/pool-background.jpg') no-repeat center center fixed;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-    }
 
     .splash-container {
         background: none;

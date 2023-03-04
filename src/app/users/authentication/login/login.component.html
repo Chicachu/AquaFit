@@ -1,5 +1,5 @@
 <div class="inner-content-container">
-  <div class="form" [formGroup]="loginGroup">
+  <div class="form" [formGroup]="loginGroup" *ngIf="!isUserLoggedIn">
     <h1 class="light-text-shadow">Login</h1>
     <div class="form-control-container">
       <app-custom-input 
@@ -22,5 +22,12 @@
 
     <app-custom-button [text]="'Submit'" (click)="login($event)"></app-custom-button>
     <p>Not registered? <a [routerLink]="['/register']">Sign Up</a></p>
+  </div>
+  <div *ngIf="isUserLoggedIn">
+    <div class="form">
+      <h1 class="light-text-shadow">You are already logged in!</h1>
+      <p>If you want information for AquaFit, <a [routerLink]="['../']">click here</a></p>
+      <p>If you want to view your profile, <a [routerLink]="['../profile']">click here</a></p>
+    </div>
   </div>
 </div>

@@ -1,13 +1,28 @@
 @import 'colors.scss';
 @import 'toastr.scss';
+@import "~@bryntum/calendar/calendar.stockholm.css";
 
 $content-width: 931px;
 $footer-height: 290px;
 $total-header-height: 175px;
+$header-footer-height: $footer-height + $total-header-height;
 $nav-height: 45px;
+$footer-nav-height: $footer-height + $nav-height;
+$all-height: $header-footer-height + $nav-height;
 
 $header-blur: 10px;
 $p-blur: 20px;
+
+.content-container {
+  flex-direction: column;
+  background: url('assets/pool-background.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 100%;
+  display: flex;
+}
 
 .flex {
   display: flex;
@@ -87,9 +102,15 @@ a:hover, a:link {
   left: 45% !important;
 }
 
+
+
 @media only screen and (min-width: 768px) {
   .inner-content-container {
     height: calc(100vh - $footer-height - 10px);
+  }
+
+  .content-container {
+    
   }
 }
 

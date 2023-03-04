@@ -7,18 +7,22 @@ import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { AuthenticationModule } from './users/authentication/authentication.module';
 import { UserUpdateService } from './users/userUpdate.service';
+import { UserModule } from './users/user.module';
+import { UsersContainerComponent } from './users/users-container.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UsersContainerComponent
   ],
   imports: [
     AppRoutingModule,
     AuthenticationModule,
     BrowserAnimationsModule,
     BrowserModule,
-    SharedModule,
     ContentModule,
+    SharedModule,
+    UserModule,
   ],
   providers: [UserUpdateService],
   bootstrap: [AppComponent]

@@ -14,6 +14,7 @@ import { AuthenticationService } from '../authentication.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  isUserLoggedIn: boolean
   usernameInputType = CustomInputType.TEXT
   passwordInputType = CustomInputType.PASSWORD
   loginGroup: FormGroup
@@ -21,21 +22,21 @@ export class LoginComponent {
   password: FormControl
 
   constructor(private _sharedService: SharedService, private _authService: AuthenticationService, private _router: Router, private _userUpdateService: UserUpdateService) {
-    this.loginGroup = new FormGroup({
-      username: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(8)])
-    })
+    this.isUserLoggedIn = this._userUpdateService.isUserLoggedIn
+    if (!this.isUserLoggedIn) {
+      this.loginGroup = new FormGroup({
+        username: new FormControl('', [Validators.required, Validators.email]),
+        password: new FormControl('', [Validators.required, Validators.minLength(8)])
+      })
+    }
   }
 
   login(event: MouseEvent) {
     this.loginGroup.markAllAsTouched()
     if (!this.loginGroup.invalid) {
       this._authService.login(this.loginGroup.controls['username'].value, this.loginGroup.controls['password'].value).subscribe({
-        next: (user: User) => {
-          console.log("USER::::")
-          console.log(user)
-          sessionStorage.setItem('user', JSON.stringify(user))
-          this._userUpdateService.user = user
+        next: (res: any) => {
+          this._userUpdateService.user = res.user
           this._router.navigate(['/'])
         }, 
         error: (error) => {

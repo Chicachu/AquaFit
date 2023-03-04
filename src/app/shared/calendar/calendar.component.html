@@ -1,0 +1,11 @@
+<div>
+  <div class="month-selector">
+    <app-custom-button [text]="'<'" (click)="setMonth(-1)"></app-custom-button>
+    <h3>{{getFormattedDate()}}</h3>
+    <app-custom-button [text]="'>'" (click)="setMonth(1)"></app-custom-button>
+  </div>
+  <li *ngFor="let day of days"> {{day}} </li>
+  <li class="days" *ngFor="let date of dates" (click)="selected.emit(date)">
+    <p>{{date | date:'d'}}</p>
+  </li>
+</div>

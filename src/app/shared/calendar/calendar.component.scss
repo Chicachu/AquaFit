@@ -1,0 +1,53 @@
+@import '../../../styles.scss';
+
+ul { 
+  margin: 0; padding: 0; list-style: none;
+}
+
+li {
+  color: $pale-blue;
+  background-color: $dark-blue;
+  border: 1px solid $blue;
+  display: inline-block;
+  width: calc(100%/7 );
+  text-align: center;
+  cursor: pointer;
+}
+
+li p {
+  text-align: end;
+  padding-right: 4px;
+  min-height: calc(100vh/7 - 50px);
+}
+
+.days {
+  color: $dark-blue;
+  border: 1px solid $dark-blue;
+  background-color: $pale-blue;
+}
+
+h3 {
+  width: 300px;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.month-selector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+@media only screen and (min-width: 768px) {
+  li p {
+    padding: 10px;
+  }
+
+  .days {
+    height: calc((100vh/7) - ($footer-height - 20px)/7);
+  }
+}
