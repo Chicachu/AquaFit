@@ -32,9 +32,9 @@ export class NavigationComponent {
 
   getRouterLink() {
     switch(this._userUpdateService.userRole) {
-      case Role.CLIENT: return "users/profile"
+      case Role.CLIENT: return "/users/profile"
       break;
-      case Role.ADMIN: return "users/admin"
+      case Role.ADMIN: return "/users/admin"
       break;
     }
     

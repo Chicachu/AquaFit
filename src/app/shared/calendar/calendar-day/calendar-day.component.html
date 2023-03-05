@@ -1,6 +1,8 @@
 <div class="day">
   <p [ngClass]="{'not-part-of-month': !isSameMonth}">{{date | date:'d'}}</p>
   <div *ngFor="let class of classes" class="class-list" [ngClass]="{'pink': class.location === Location.NARVAL, 'green': class.location === Location.MARINA}">
-    <p>{{getTimeFormat(class.startTime)}}</p>
+    <a [routerLink]="['classes/' + class.classId]">
+      <p>{{getTimeFormat(class.startTime)}}</p>
+    </a>
   </div>
 </div>

@@ -23,8 +23,4 @@ export class CalendarDayComponent implements OnInit {
   getTimeFormat(date: Date) {
     return this._sharedService.formatTime(date)
   }
-
-  goToClassView(classId: string): void {
-    this._router.navigate(['users/admin/classes/' + classId])
-  }
 }

@@ -25,7 +25,14 @@ export class CalendarComponent implements OnInit {
 
   constructor(private _calendarService: CalendarService, private _sharedService: SharedService) {
     this.dates = this._getCalendarDays(this.date);
-    console.log(this.dates)
+  }
+
+  ngOnInit(): void {
+    this.getClassesForMonth()
+  }
+
+  getClassesForMonth() {
+    this.calendarReady = false
     this._calendarService.getClassesForMonth(this.date.getMonth(), this.date.getFullYear()).subscribe({
       next: (res: MonthClass[]) => {
         this.monthlyClasses = res
@@ -37,10 +44,6 @@ export class CalendarComponent implements OnInit {
         this._sharedService.showResponse(ResponseType.ERROR, 'Could not get classes for this month. Refresh and try again.', 500)
       }
     })
-  }
-
-  ngOnInit(): void {
-    
   }
 
   initializeMonthMap(): void {
@@ -72,10 +75,11 @@ export class CalendarComponent implements OnInit {
   }
 
   setMonth(inc: number): void {
-    const [year, month] = [this.date.getFullYear(), this.date.getMonth()];
+    const [year, month] = [this.date.getFullYear(), this.date.getMonth()]
     console.log(month + inc)
-    this.date = new Date(year, month + inc, 1);
-    this.dates = this._getCalendarDays(this.date);
+    this.date = new Date(year, month + inc, 1)
+    this.dates = this._getCalendarDays(this.date)
+    this.getClassesForMonth()
   }
 
   isSameMonth(date: Date): boolean {

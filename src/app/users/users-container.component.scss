@@ -1,7 +1,7 @@
 @import '../../styles.scss';
 
 .management-outer-container {
-  min-height: calc(100vh - $footer-nav-height - 12px);
+  min-height: calc(100vh - $footer-nav-height - 11px);
   display: flex;
   justify-content: center;
 }

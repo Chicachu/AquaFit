@@ -9,6 +9,7 @@ import { CustomButtonComponent } from './custom-button/custom-button.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ToastrModule } from 'ngx-toastr';
     NavigationComponent,
     FooterComponent,
     CustomInputComponent,
-    CustomButtonComponent
+    CustomButtonComponent,
+    LoaderComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +34,8 @@ import { ToastrModule } from 'ngx-toastr';
     FooterComponent,
     CustomInputComponent,
     CustomButtonComponent,
-    ToastrModule
+    ToastrModule,
+    LoaderComponent
   ]
 })
 export class SharedModule { }
