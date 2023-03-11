@@ -5,7 +5,7 @@
     <app-custom-button [text]="'>'" (click)="setMonth(1)"></app-custom-button>
   </div>
   <li *ngFor="let day of days"> {{day}} </li>
-  <li class="days" *ngFor="let date of dates" (click)="selected.emit(date)">
+  <li class="days" *ngFor="let date of getDates()">
     <app-calendar-day [date]="date" [isSameMonth]="isSameMonth(date)" [classes]="getClassesForDay(date)"></app-calendar-day>
   </li>
 </div>
