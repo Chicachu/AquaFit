@@ -10,7 +10,7 @@ const routes: Routes = [
     path: 'users', component: UsersContainerComponent,
     children: [
       { path: 'admin', component: AdminComponent },
-      { path: 'admin/classes/:classId', component: ClassesComponent, pathMatch: 'full' },
+      { path: 'admin/classes/:classId/:day/:month/:year', component: ClassesComponent, pathMatch: 'full' },
       { path: 'profile', component: ProfileComponent }
     ]
   },

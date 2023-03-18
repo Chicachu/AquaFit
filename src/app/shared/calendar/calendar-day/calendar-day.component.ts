@@ -23,4 +23,8 @@ export class CalendarDayComponent implements OnInit {
   getTimeFormat(date: Date) {
     return this._sharedService.formatTime(date)
   }
+
+  navigateToClassInfo(classInfo: DayClass): void {
+    this._router.navigate([`users/admin/classes/${classInfo.classId}/${this.date.getDate()}/${this.date.getMonth()}/${this.date.getFullYear()}`])
+  }
 }

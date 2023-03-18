@@ -1,0 +1,44 @@
+@import '../../../../styles.scss';
+
+.flex {
+  width: 50%;
+}
+
+.header {
+  align-items: start;
+}
+
+h1 {
+  font-weight: bold;
+}
+
+h2 {
+  margin-top: -10px;
+  padding-top: 10px;
+  border-top: 3px solid $dark-blue;
+}
+
+.top-header {
+  justify-content: space-between;
+}
+
+.client-list {
+  width: 250px;
+  border-bottom: 2px solid $dark-blue;
+}
+
+p {
+  white-space: nowrap;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 5px;
+}
+
+.checkbox {
+  color: $dark-blue;
+  height: 15px;
+  width: 15px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+

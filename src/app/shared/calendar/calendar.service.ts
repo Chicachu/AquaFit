@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable, take } from 'rxjs';
 import { httpBaseUrl } from 'src/environments/constants';
 import { DayClass } from './types/dayClass';
-import { MonthClass } from './types/monthClass';
 
 @Injectable({
   providedIn: 'root'

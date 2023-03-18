@@ -34,8 +34,6 @@ export class CalendarComponent implements OnInit {
           return [day[0], day[1]]
         }))
 
-        console.log(this.monthMap)
-
         this.calendarReady = true
       },
       error: ({error}) => {

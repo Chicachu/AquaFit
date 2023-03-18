@@ -28,6 +28,12 @@ $p-blur: 20px;
   align-items: center;
 }
 
+.col-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .inner-content-container {
   display: flex;
   justify-content: center;

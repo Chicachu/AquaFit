@@ -1,1 +1,22 @@
 
+<div *ngIf="class" class="col-flex">
+  <div class="flex top-header">
+    <div class="col-flex header">
+      <h1>{{class.classLocation}}</h1>
+      <h2>{{class.days | DayOfWeek}}</h2>
+    </div>
+    <div class="col-flex">
+      <h3>{{class.prices | Currency}}</h3>
+      <app-custom-button [text]="'Cancel Class'" (click)="cancelClass()"></app-custom-button>
+    </div>
+  </div>
+  <div class="flex">
+    <div class="col-flex header">
+      <h3 class="client-list">Client List</h3>
+      <div class="flex">
+        <input class="checkbox" type="checkbox">
+        <p *ngFor="let client of class.clients">{{client.firstName}} {{client.lastName}}</p>
+      </div>
+    </div>
+  </div>
+</div>

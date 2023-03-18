@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { LoaderComponent } from './loader/loader.component';
+import { PipesModule } from './pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { LoaderComponent } from './loader/loader.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    PipesModule,
     RouterModule,
     ToastrModule.forRoot()
   ], 
@@ -35,7 +37,8 @@ import { LoaderComponent } from './loader/loader.component';
     CustomInputComponent,
     CustomButtonComponent,
     ToastrModule,
-    LoaderComponent
+    LoaderComponent,
+    PipesModule
   ]
 })
 export class SharedModule { }
