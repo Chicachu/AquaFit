@@ -1,4 +1,4 @@
-
+<app-navigation-bar></app-navigation-bar>
 <div *ngIf="class" class="col-flex">
   <div class="flex top-header">
     <div class="col-flex header">
@@ -10,9 +10,12 @@
       <app-custom-button [text]="'Cancel Class'" (click)="cancelClassModal()"></app-custom-button>
     </div>
   </div>
-  <div class="flex">
+  <div class="col-flex client-list-list">
     <div class="col-flex header">
-      <h3 class="client-list">Client List</h3>
+      <div class="flex client-list">
+        <h3>Client List</h3>
+        <app-custom-button [text]="'+'" (click)="addClientToClass()" class="add-client-button"></app-custom-button>
+      </div>
       <div *ngFor="let client of class.clients" class="flex">
         <input class="checkbox" type="checkbox" (change)="checkInClient(client._id, $event)">
         <p>{{client.firstName}} {{client.lastName}}</p>
@@ -21,13 +24,23 @@
         <p>You have no clients in this class yet</p>
       </div>
     </div>
+    <div class="col-flex header">
+      <h3 class="client-list">Waitlist</h3>
+      <div *ngFor="let client of class.clients" class="flex">
+        <input class="checkbox" type="checkbox" (change)="checkInClient(client._id, $event)">
+        <p>{{client.firstName}} {{client.lastName}}</p>
+      </div>
+      <div *ngIf="!class.clients.length">
+        <p>There is no one on the waitlist for this class</p>
+      </div>
+    </div>
   </div>
 </div>
 
 <app-custom-modal 
   [showModal]="showCancelModal"
   [title]="'You are about to cancel this class'" 
-  [content]="'This action cannot be undone. Are you sure you want to cancel this class?'"
+  [content]="getCancelClassText()"
   [buttons]="cancelClassButtons">
   <div content>
     <input type="checkbox">

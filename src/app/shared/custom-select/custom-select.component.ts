@@ -1,13 +1,22 @@
-import { Component, Input } from '@angular/core';
+import { Component, forwardRef, Input } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-custom-select',
   templateUrl: './custom-select.component.html',
-  styleUrls: ['./custom-select.component.scss']
+  styleUrls: ['./custom-select.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => CustomSelectComponent),
+      multi: true
+    }
+  ]
 })
-export class CustomSelectComponent {
+export class CustomSelectComponent implements ControlValueAccessor {
   @Input() id: string
   @Input() label: string
+  @Input() selectedValue: string
   @Input() values: string[]
   @Input() required: boolean
   @Input() error: boolean
@@ -21,6 +30,14 @@ export class CustomSelectComponent {
     if (this.required) {
       this.asterisk = '*'
     }
+  }
+
+  writeValue(value: string): void {
+    this.selectedValue = value
+  }
+
+  setDisabledState?(isDisabled: boolean): void {
+    
   }
 
   registerOnChange(fn: any): void {

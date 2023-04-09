@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SharedService } from 'src/app/shared/shared.service';
-import { Class } from '../../../../types/class';
-import { AdminService } from '../../admin.service';
+import { Class } from '../../../types/class';
+import { AdminService } from '../admin.service';
 
 @Component({
   selector: 'app-class-details',
@@ -15,7 +15,7 @@ export class ClassDetailsComponent implements OnInit {
   date: Date
   showCancelModal = false
   cancelClassButtons = [
-    { text: 'Do Not Cancel Class', event: () => { this.showCancelModal = false } },
+    { text: 'Back', event: () => { this.showCancelModal = false } },
     { text: 'Yes Cancel Class', event: this.cancelClass.bind(this) },
   ]
 
@@ -44,9 +44,17 @@ export class ClassDetailsComponent implements OnInit {
     })
   }
 
+  addClientToClass(): void {
+
+  }
+
   checkInClient(clientId: string, checkIn: Event) {
     const checkInCheckbox = checkIn.target as HTMLInputElement
     this._adminService.checkInClient(clientId, this.classId, checkInCheckbox.checked, this.date.getDate(), this.date.getMonth(), this.date.getFullYear())
+  }
+
+  getCancelClassText() {
+    return 'This action cannot be undone. Are you sure you want to cancel this class on ' + this._sharedService.getFormattedDayMonth(this.date) + '?'
   }
 
   cancelClassModal() {

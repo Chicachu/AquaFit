@@ -33,6 +33,10 @@ export class SharedService {
     this._showResponse(ResponseType.SUCCESS, text)
   }
 
+  getFormattedDayMonth(date: Date): string {
+    return date.getDate() + '/' + (date.getMonth() + 1);
+  }
+
   private _showResponse(type: ResponseType, text?: string, timeout = 8000) {
     let message = ''
     if (text) message = text

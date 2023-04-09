@@ -1,0 +1,60 @@
+@import '../../../../styles.scss';
+
+.outer-container {
+  justify-content: center;
+  min-height: 100%;
+  align-items: stretch;
+}
+
+.class-container, .client-container {
+  justify-content: start;
+  width: 25vw;
+  min-height: 100%;
+}
+
+h1 {
+  margin: 0px;
+  color: $dark-blue;
+}
+
+.green {
+  color: $green;
+}
+
+.red {
+  color: $error;
+  font-weight: bold;
+}
+
+.client-list p, .class-list a {
+  font-size: 20px;
+}
+
+.class-list a {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.class-list {
+  min-width: 30%;
+}
+
+.pink {
+  color: $pink;
+  font-size: 16px !important;
+}
+
+.add-button {
+  margin-left:20px;
+}
+
+.class-header {
+  margin-top: 10px;
+  border-bottom: 2px solid $dark-blue;
+}
+
+.form-group h1 {
+  font-size: 22px;
+  font-weight: bold;
+  color: $pink;
+}

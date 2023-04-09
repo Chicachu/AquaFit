@@ -1,1 +1,50 @@
-<p>clients works!</p>
+<app-navigation-bar></app-navigation-bar>
+
+<div class="flex outer-container">
+  <div class="col-flex class-container">
+    <div class="flex class-header">
+      <h1>Clients</h1><app-custom-button [text]="'+'" class="add-button" (click)="addClientModal()"></app-custom-button>
+    </div>
+    <div *ngFor="let client of clients" class="class-list">
+      <a>{{client.firstName}} {{client.lastName}}</a>
+      <a class="pink" (click)="navigateToClientDetails(client)">&nbsp;details</a>
+    </div>
+  </div>
+  <div class="col-flex client-container">
+    <div class="flex class-header">
+      <h1>Waitlist</h1>
+    </div>
+  </div>
+</div>
+
+<app-custom-modal 
+  [showModal]="showAddClientModal"
+  [title]="'Add a new client'" 
+  [buttons]="addClientButtons">
+  <div content [formGroup]="addClientForm" class="form-group">
+    <div class="flex">
+      <app-custom-input 
+        [id]="'fn'" [label]="'First Name'" 
+        [type]="inputType.TEXT" [required]="true" formControlName="firstName" 
+        [error]="addClientForm.controls['firstName'].invalid && addClientForm.controls['firstName'].touched">
+      </app-custom-input>
+      <app-custom-input 
+        [id]="'ln'" [label]="'Last Name'" 
+        [type]="inputType.TEXT" [required]="true" formControlName="lastName" 
+        [error]="addClientForm.controls['lastName'].invalid && addClientForm.controls['lastName'].touched">
+      </app-custom-input>
+    </div>
+    <div class="flex">
+      <app-custom-input 
+        [id]="'phone'" [label]="'Phone Number'" 
+        [type]="inputType.TEXT" [required]="true" formControlName="phoneNumber" 
+        [error]="addClientForm.controls['phoneNumber'].invalid && addClientForm.controls['phoneNumber'].touched">
+      </app-custom-input>
+      <app-custom-input 
+        [id]="'email'" [label]="'Email'" 
+        [type]="inputType.TEXT" [required]="false" formControlName="email" 
+        [error]="addClientForm.controls['email'].invalid && addClientForm.controls['email'].touched">
+      </app-custom-input>
+    </div>
+  </div>
+</app-custom-modal>

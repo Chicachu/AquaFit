@@ -28,6 +28,10 @@ h2 {
   border-bottom: 2px solid $dark-blue;
 }
 
+.client-list h3 {
+  margin: auto 0;
+}
+
 p {
   white-space: nowrap;
   margin-top: 0;
@@ -41,6 +45,15 @@ p {
   width: 15px;
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.client-list-list {
+  align-items: flex-start;
+  width: 50%;
+}
+
+.add-client-button {
+  margin-left: 15px;
 }
 
 @media only screen and (min-width: 768px) {

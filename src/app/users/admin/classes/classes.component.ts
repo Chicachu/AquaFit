@@ -5,6 +5,8 @@ import { CustomInputType } from 'src/app/shared/custom-input/custom-input-type';
 import { SharedService } from 'src/app/shared/shared.service';
 import { Class } from 'src/app/types/class';
 import { Client } from 'src/app/types/client';
+import { Currency } from 'src/app/types/enums/currency';
+import { DayOfWeek } from 'src/app/types/enums/dayOfWeek';
 import { Location } from 'src/app/types/enums/location';
 import { Meridiem } from 'src/app/types/enums/meridiem';
 import { ScheduleDays } from 'src/app/types/enums/scheduleDays';
@@ -36,15 +38,7 @@ export class ClassesComponent implements OnInit {
   constructor(private _adminService: AdminService, private _sharedService: SharedService, private _router: Router) {}
 
   ngOnInit(): void {
-    this._adminService.getClasses().subscribe({
-      next: (rsp) => {
-        this.classes = rsp
-      }, 
-      error: ({error}) => {
-        this._sharedService.showError(error.message)
-      }
-    })
-
+    this.getClasses()
     this.initializeAddClassForm()
 
     this.startTimes = this.hours.map((h) => h === 0 ? '12 ' + Meridiem.AM : h + ' ' + Meridiem.AM)
@@ -54,6 +48,17 @@ export class ClassesComponent implements OnInit {
   getClassDisplayName(classInfo: Class): string {
     if (!classInfo) return ''
     return classInfo.classLocation + " " + classInfo.startTime.time + " " + classInfo.startTime.meridiem
+  }
+
+  getClasses() {
+    this._adminService.getClasses().subscribe({
+      next: (rsp) => {
+        this.classes = rsp
+      }, 
+      error: ({error}) => {
+        this._sharedService.showError(error.message)
+      }
+    })
   }
 
   getClients(classInfo: Class) {
@@ -75,7 +80,37 @@ export class ClassesComponent implements OnInit {
     return this.currentClientIds.includes(clientId)
   }
 
-  addClass() {}
+  addClass() {
+    console.log(this.addClassForm)
+    let days: DayOfWeek[] = []
+    if (this.addClassForm.controls['classDays'].value === ScheduleDays.MON_WED_FRI) {
+      days = [DayOfWeek.MONDAY, DayOfWeek.WEDNESDAY, DayOfWeek.FRIDAY]
+    } else if (this.addClassForm.controls['classDays'].value === ScheduleDays.TUE_THU) {
+      days = [DayOfWeek.TUESDAY, DayOfWeek.THURSDAY]
+    }
+    const newClass = {
+      location: this.addClassForm.controls['classLocation'].value,
+      days, 
+      startTime: {
+        time: parseInt(this.addClassForm.controls['classStartTime'].value.split(' ')[0]),
+        meridiem: this.addClassForm.controls['classStartTime'].value.split(' ')[1]
+      },
+      maxAttendees: parseInt(this.addClassForm.controls['maxAttendees'].value),
+      prices: [
+        {currency: Currency.MXN, value: this.addClassForm.controls['pricePesos'].value},
+        {currency: Currency.USD, value: this.addClassForm.controls['priceDollars'].value}
+      ]
+    }
+    this._adminService.addNewClass(newClass).subscribe({
+      next: (rsp) => {
+        this.showAddClassModal = false
+        this._sharedService.showSuccess(`Successfully added a class at ${rsp.classLocation} - ${rsp.startTime.time} ${rsp.startTime.meridiem}, ${rsp.days}`)
+      }, 
+      error: ({error}) => {
+        this._sharedService.showError(error.message)
+      }
+    })
+  }
 
   navigateToClassDetails(classInfo: Class): void {
     const date = new Date()

@@ -1,0 +1,53 @@
+@import '../../../../styles.scss';
+
+.admin-nav-bar {
+  background-color: white;
+  height: 45px;
+  border-bottom: 4px solid $dark-blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  margin: auto;
+}
+
+li {
+  color: $dark-blue;
+  font-size: 15px;
+  font-weight: bold;
+  padding-right: 15px;
+}
+
+a {
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 5px;
+}
+
+.admin-nav-list {
+  width: $content-width;
+  display: flex;
+}
+
+a::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  border-radius: 4px;
+  background-color: $blue;
+  bottom: 0px;
+  left: 0;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform .3s ease-in-out;
+}
+
+a:hover::before {
+  transform-origin: left;
+  transform: scaleX(1);
+}

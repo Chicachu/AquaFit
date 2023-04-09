@@ -1,3 +1,4 @@
+<app-navigation-bar></app-navigation-bar>
 <div class="flex outer-container">
   <div class="col-flex class-container">
     <div class="flex class-header">
@@ -9,8 +10,10 @@
     </div>
   </div>
   <div class="col-flex client-container">
-    <h1 *ngIf="!clients">Select a class to see clients</h1>
-    <h1 *ngIf="clients">Clients in {{getClassDisplayName(selectedClass)}}</h1>
+    <div class="class-header">
+      <h1 *ngIf="!clients">Select a class to see clients</h1>
+      <h1 *ngIf="clients">Clients in {{getClassDisplayName(selectedClass)}}</h1>
+    </div>
     <div *ngFor="let client of clients" class="flex client-list">
       <p>{{client.firstName}} {{client.lastName}}</p>
       <p *ngIf="isEnrolled(client._id)" class="green">&nbsp;enrolled</p>
@@ -23,7 +26,7 @@
   [showModal]="showAddClassModal"
   [title]="'Add a new class'" 
   [buttons]="addClassButtons">
-  <div content formGroup="addClassForm" class="form-group">
+  <div content [formGroup]="addClassForm" class="form-group">
     <h1>Where</h1>
     <div class="flex">
       <app-custom-select 

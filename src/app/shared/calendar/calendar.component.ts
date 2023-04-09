@@ -33,8 +33,6 @@ export class CalendarComponent implements OnInit {
         this.monthMap = new Map(res.map((day: any) => {
           return [day[0], day[1]]
         }))
-
-        console.log(this.monthMap)
         this.calendarReady = true
       },
       error: ({error}) => {

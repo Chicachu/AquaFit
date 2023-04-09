@@ -4,6 +4,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { UserRoutingModule } from './user-routing.module';
 import { BryntumCalendarModule } from '@bryntum/calendar-angular';
 import { AdminModule } from './admin/admin.module';
+import { RouterModule } from '@angular/router';
 
 
 

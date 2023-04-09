@@ -8,11 +8,11 @@
 
 .class-container, .client-container {
   justify-content: start;
-  width: 30vw;
+  width: 25vw;
   min-height: 100%;
 }
 
-.class-container h1 {
+h1 {
   margin: 0px;
   color: $dark-blue;
 }
@@ -33,6 +33,10 @@
 .class-list a {
   font-weight: bold;
   cursor: pointer;
+}
+
+.class-list {
+  width: 32%;
 }
 
 .pink {
