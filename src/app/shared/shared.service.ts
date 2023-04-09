@@ -11,14 +11,6 @@ export class SharedService {
 
   constructor(private _toastr: ToastrService) { }
 
-  formatDate(date: Date): string {
-    return moment(date).format('LL')
-  }
-
-  formatTime(date: Date): string {
-    return moment(date).format('LT')
-  }
-
   validateEmail(email: string) {
     const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
     return emailRegex.exec(email)
@@ -33,7 +25,15 @@ export class SharedService {
     return control.invalid && control.touched && invalid 
   }
 
-  showResponse(type: ResponseType, text?: string, timeout = 8000) {
+  showError(text?: string, timeout = 8000) {
+    this._showResponse(ResponseType.ERROR, text)
+  }
+
+  showSuccess(text?: string, timeout = 8000) {
+    this._showResponse(ResponseType.SUCCESS, text)
+  }
+
+  private _showResponse(type: ResponseType, text?: string, timeout = 8000) {
     let message = ''
     if (text) message = text
     else if (type === ResponseType.SUCCESS)  message = 'Successful!'

@@ -2,7 +2,8 @@
   <p [ngClass]="{'not-part-of-month': !isSameMonth}">{{date | date:'d'}}</p>
   <div *ngFor="let class of classes" class="class-list" [ngClass]="{'pink': class.location === Location.NARVAL, 'green': class.location === Location.MARINA}">
     <a (click)="navigateToClassInfo(class)">
-      <p>{{getTimeFormat(class.startTime)}}</p>
+      <p>{{class.startTime | Time}}</p>
+      <p *ngIf="class.lastDayClientIds?.length" class="last-day">{{class.lastDayClientIds?.length}}</p>
     </a>
   </div>
 </div>

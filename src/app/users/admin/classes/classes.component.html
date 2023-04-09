@@ -1,22 +1,70 @@
-
-<div *ngIf="class" class="col-flex">
-  <div class="flex top-header">
-    <div class="col-flex header">
-      <h1>{{class.classLocation}}</h1>
-      <h2>{{class.days | DayOfWeek}}</h2>
+<div class="flex outer-container">
+  <div class="col-flex class-container">
+    <div class="flex class-header">
+      <h1>Classes</h1><app-custom-button [text]="'+'" class="add-button" (click)="addClassModal()"></app-custom-button>
     </div>
-    <div class="col-flex">
-      <h3>{{class.prices | Currency}}</h3>
-      <app-custom-button [text]="'Cancel Class'" (click)="cancelClass()"></app-custom-button>
+    <div *ngFor="let class of classes" class="class-list">
+      <a (click)="getClients(class)">{{getClassDisplayName(class)}}</a>
+      <a class="pink" (click)="navigateToClassDetails(class)">&nbsp;details</a>
     </div>
   </div>
-  <div class="flex">
-    <div class="col-flex header">
-      <h3 class="client-list">Client List</h3>
-      <div class="flex">
-        <input class="checkbox" type="checkbox">
-        <p *ngFor="let client of class.clients">{{client.firstName}} {{client.lastName}}</p>
-      </div>
+  <div class="col-flex client-container">
+    <h1 *ngIf="!clients">Select a class to see clients</h1>
+    <h1 *ngIf="clients">Clients in {{getClassDisplayName(selectedClass)}}</h1>
+    <div *ngFor="let client of clients" class="flex client-list">
+      <p>{{client.firstName}} {{client.lastName}}</p>
+      <p *ngIf="isEnrolled(client._id)" class="green">&nbsp;enrolled</p>
+      <p *ngIf="!isEnrolled(client._id)" class="red">&nbsp;not enrolled</p>
     </div>
   </div>
 </div>
+
+<app-custom-modal 
+  [showModal]="showAddClassModal"
+  [title]="'Add a new class'" 
+  [buttons]="addClassButtons">
+  <div content formGroup="addClassForm" class="form-group">
+    <h1>Where</h1>
+    <div class="flex">
+      <app-custom-select 
+          [id]="'classLoc'" [label]="'Location'" 
+          [required]="true" formControlName="classLocation" [values]="locations"
+          [error]="addClassForm.controls['classLocation'].invalid && addClassForm.controls['classLocation'].touched">
+      </app-custom-select>
+    </div>
+    <h1>When</h1>
+    <div class="flex">
+      <app-custom-select 
+        [id]="'classDays'" [label]="'Days'" 
+        [required]="true" formControlName="classDays" [values]="days"
+        [error]="addClassForm.controls['classDays'].invalid && addClassForm.controls['classDays'].touched">
+      </app-custom-select>
+      <app-custom-select 
+        [id]="'classST'" [label]="'Start Time'" 
+        [required]="true" formControlName="classStartTime" [values]="startTimes"
+        [error]="addClassForm.controls['classStartTime'].invalid && addClassForm.controls['classStartTime'].touched">
+      </app-custom-select>
+    </div>
+    <h1>Who</h1>
+    <div class="flex">
+      <app-custom-input 
+        [id]="'maxClients'" [label]="'Max Attendees'" 
+        [type]="inputType.TEXT" [required]="true" formControlName="maxAttendees" 
+        [error]="addClassForm.controls['maxAttendees'].invalid && addClassForm.controls['maxAttendees'].touched">
+      </app-custom-input>
+    </div>
+    <h1>How Much</h1>
+    <div class="flex">
+      <app-custom-input 
+        [id]="'pesos'" [label]="'MXN Pesos'" 
+        [type]="inputType.TEXT" [required]="true" formControlName="pricePesos" 
+        [error]="addClassForm.controls['pricePesos'].invalid && addClassForm.controls['pricePesos'].touched">
+      </app-custom-input>
+      <app-custom-input 
+        [id]="'dollars'" [label]="'USD Dollars'" 
+        [type]="inputType.TEXT" [required]="true" formControlName="priceDollars" 
+        [error]="addClassForm.controls['priceDollars'].invalid && addClassForm.controls['priceDollars'].touched">
+      </app-custom-input>
+    </div>
+  </div>
+</app-custom-modal>

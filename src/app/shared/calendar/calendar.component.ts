@@ -34,10 +34,11 @@ export class CalendarComponent implements OnInit {
           return [day[0], day[1]]
         }))
 
+        console.log(this.monthMap)
         this.calendarReady = true
       },
       error: ({error}) => {
-        this._sharedService.showResponse(ResponseType.ERROR, 'Could not get classes for this month. Refresh and try again.', 500)
+        this._sharedService.showError(error.message)
       }
     })
   }
@@ -55,13 +56,8 @@ export class CalendarComponent implements OnInit {
     return this.monthMap.get(this._getDateWithoutTime(date).getTime())!
   }
 
-  getFormattedDate(): string {
-    return this._sharedService.formatDate(this.date)
-  }
-
   setMonth(inc: number): void {
     const [year, month] = [this.date.getFullYear(), this.date.getMonth()]
-    console.log(month + inc)
     this.date = new Date(year, month + inc, 1)
     this.getClassesForMonth()
   }

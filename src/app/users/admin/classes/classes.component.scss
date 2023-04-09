@@ -1,44 +1,56 @@
 @import '../../../../styles.scss';
 
-.flex {
-  width: 50%;
+.outer-container {
+  justify-content: center;
+  min-height: 100%;
+  align-items: stretch;
 }
 
-.header {
-  align-items: start;
+.class-container, .client-container {
+  justify-content: start;
+  width: 30vw;
+  min-height: 100%;
 }
 
-h1 {
+.class-container h1 {
+  margin: 0px;
+  color: $dark-blue;
+}
+
+.green {
+  color: $green;
+}
+
+.red {
+  color: $error;
   font-weight: bold;
 }
 
-h2 {
-  margin-top: -10px;
-  padding-top: 10px;
-  border-top: 3px solid $dark-blue;
+.client-list p, .class-list a {
+  font-size: 20px;
 }
 
-.top-header {
-  justify-content: space-between;
+.class-list a {
+  font-weight: bold;
+  cursor: pointer;
 }
 
-.client-list {
-  width: 250px;
+.pink {
+  color: $pink;
+  font-size: 16px !important;
+}
+
+.add-button {
+  margin-left:20px;
+}
+
+.class-header {
+  margin-top: 10px;
   border-bottom: 2px solid $dark-blue;
 }
 
-p {
-  white-space: nowrap;
-  margin-top: 0;
-  margin-bottom: 0;
-  padding-left: 5px;
+.form-group h1 {
+  font-size: 22px;
+  font-weight: bold;
+  color: $pink;
 }
-
-.checkbox {
-  color: $dark-blue;
-  height: 15px;
-  width: 15px;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-

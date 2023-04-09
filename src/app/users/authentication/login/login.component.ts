@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ResponseType } from 'src/environments/constants';
+import { Role } from 'src/app/types/enums/role';
 import { CustomInputType } from '../../../shared/custom-input/custom-input-type';
 import { SharedService } from '../../../shared/shared.service';
-import { User } from '../../../types/user';
 import { UserUpdateService } from '../../userUpdate.service';
 import { AuthenticationService } from '../authentication.service';
 
@@ -37,11 +36,14 @@ export class LoginComponent {
       this._authService.login(this.loginGroup.controls['username'].value, this.loginGroup.controls['password'].value).subscribe({
         next: (res: any) => {
           this._userUpdateService.user = res.user
-          this._router.navigate(['/'])
+          if (this._userUpdateService.user.role === Role.ADMIN) {
+            this._router.navigate(['/users/admin'])
+          } else {
+            this._router.navigate(['/'])
+          }
         }, 
-        error: (error) => {
-          this._sharedService.showResponse(ResponseType.ERROR)
-          console.log(error)
+        error: ({error}) => {
+          this._sharedService.showError(error.message)
         }
       })
     }

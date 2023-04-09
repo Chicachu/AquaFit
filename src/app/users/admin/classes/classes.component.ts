@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { CustomInputType } from 'src/app/shared/custom-input/custom-input-type';
 import { SharedService } from 'src/app/shared/shared.service';
-import { ResponseType } from 'src/environments/constants';
-import { Class } from '../../../types/class';
+import { Class } from 'src/app/types/class';
+import { Client } from 'src/app/types/client';
+import { Location } from 'src/app/types/enums/location';
+import { Meridiem } from 'src/app/types/enums/meridiem';
+import { ScheduleDays } from 'src/app/types/enums/scheduleDays';
 import { AdminService } from '../admin.service';
 
 @Component({
@@ -11,40 +16,84 @@ import { AdminService } from '../admin.service';
   styleUrls: ['./classes.component.scss']
 })
 export class ClassesComponent implements OnInit {
-  classId: string
-  class: Class
-  date: Date
+  inputType = CustomInputType
+  classes: Class[]
+  selectedClass: Class
+  clients: Client[]
+  currentClientIds: string[]
+  showAddClassModal = false
+  addClassForm: FormGroup
+  addClassButtons = [
+    { text: 'Back', event: () => { this.showAddClassModal = false } },
+    { text: 'Add Class', event: this.addClass.bind(this) },
+  ]
 
-  constructor(private _router: Router, private _route: ActivatedRoute, private _adminService: AdminService, private _sharedService: SharedService) {
-    this.classId = this._route.snapshot.params['classId'];
-    this.date = new Date()
-    this.date.setDate(this._route.snapshot.params['day'])
-    this.date.setMonth(this._route.snapshot.params['month'])
-    this.date.setFullYear(this._route.snapshot.params['year'])
-  }
+  locations = Object.values(Location)
+  days = Object.values(ScheduleDays)
+  hours = Array.from(Array(12).keys())
+  startTimes: string[]
 
-  ngOnInit() {
-    if (!this.class) {
-      this.getClass()
-    }
-  }
+  constructor(private _adminService: AdminService, private _sharedService: SharedService, private _router: Router) {}
 
-  getClass() {
-    this._adminService.getClass(this.classId, this.date.getDate(), this.date.getMonth(), this.date.getFullYear()).subscribe({
+  ngOnInit(): void {
+    this._adminService.getClasses().subscribe({
       next: (rsp) => {
-        this.class = rsp
+        this.classes = rsp
       }, 
       error: ({error}) => {
-        this._sharedService.showResponse(ResponseType.ERROR, `Could not get class information for ${this.date}`)
+        this._sharedService.showError(error.message)
+      }
+    })
+
+    this.initializeAddClassForm()
+
+    this.startTimes = this.hours.map((h) => h === 0 ? '12 ' + Meridiem.AM : h + ' ' + Meridiem.AM)
+    this.startTimes = this.startTimes.concat(this.hours.map((h) => h === 0 ? '12 ' + Meridiem.PM : h + ' ' + Meridiem.PM))
+  }
+
+  getClassDisplayName(classInfo: Class): string {
+    if (!classInfo) return ''
+    return classInfo.classLocation + " " + classInfo.startTime.time + " " + classInfo.startTime.meridiem
+  }
+
+  getClients(classInfo: Class) {
+    if (!classInfo) return
+
+    this.selectedClass = classInfo
+    this._adminService.getClients(classInfo._id).subscribe({
+      next: (rsp: any) => {
+        this.clients = rsp.clients
+        this.currentClientIds = rsp.currentClientIds
+      }, 
+      error: ({error}) => {
+        this._sharedService.showError(error.message)
       }
     })
   }
-
-  cancelClass() {
-
+  
+  isEnrolled(clientId: string): boolean {
+    return this.currentClientIds.includes(clientId)
   }
 
-  ngOnDestroy() {
-    localStorage.clear()
+  addClass() {}
+
+  navigateToClassDetails(classInfo: Class): void {
+    const date = new Date()
+    this._router.navigate([`users/admin/classes/${classInfo._id}/${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`])
+  }
+
+  addClassModal(): void {
+    this.showAddClassModal = true
+  }
+
+  initializeAddClassForm(): void {
+    this.addClassForm = new FormGroup({
+      classLocation: new FormControl('', [Validators.required]),
+      classDays: new FormControl('', [Validators.required]),
+      classStartTime: new FormControl('', [Validators.required]),
+      maxAttendees: new FormControl('', [Validators.required]),
+      pricePesos: new FormControl('', [Validators.required]),
+      priceDollars: new FormControl('', [Validators.required]),
+    })
   }
 }

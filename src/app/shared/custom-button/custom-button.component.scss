@@ -3,7 +3,12 @@
 button {
   padding: 4px 25px;
   background-color: $dark-blue;
-  border: 1px solid $blue;
+  border: 2px solid $blue;
   color: white;
   border-radius: 5px;
+}
+
+.inverted {
+  background-color: white !important;
+  color: $dark-blue !important;
 }

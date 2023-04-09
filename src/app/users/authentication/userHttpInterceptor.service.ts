@@ -20,7 +20,6 @@ export class UserHttpInterceptor implements HttpInterceptor {
     return next.handle(httpRequest).pipe(
       finalize(() => {
         this.totalRequests--
-        console.log(this.totalRequests)
         if (this.totalRequests == 0) {
           this._loaderService.setLoading(false)
         }

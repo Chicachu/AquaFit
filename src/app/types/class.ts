@@ -4,8 +4,12 @@ import { Currency } from "../types/enums/currency"
 import { Client } from "./client"
 
 export type Class = {
+  _id: string
   classLocation: Location
-  startTime: Date,
+  startTime: {
+    time: number, 
+    meridiem: string
+  },
   days: Day[],
   prices: [
     {

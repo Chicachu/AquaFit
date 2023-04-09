@@ -11,6 +11,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { LoaderComponent } from './loader/loader.component';
 import { PipesModule } from './pipes/pipes.module';
+import { CustomModalComponent } from './custom-modal/custom-modal.component';
+import { CustomSelectComponent } from './custom-select/custom-select.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { PipesModule } from './pipes/pipes.module';
     FooterComponent,
     CustomInputComponent,
     CustomButtonComponent,
-    LoaderComponent
+    LoaderComponent,
+    CustomModalComponent,
+    CustomSelectComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +42,9 @@ import { PipesModule } from './pipes/pipes.module';
     CustomButtonComponent,
     ToastrModule,
     LoaderComponent,
-    PipesModule
+    PipesModule,
+    CustomModalComponent,
+    CustomSelectComponent
   ]
 })
 export class SharedModule { }

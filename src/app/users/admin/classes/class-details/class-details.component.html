@@ -1,0 +1,35 @@
+
+<div *ngIf="class" class="col-flex">
+  <div class="flex top-header">
+    <div class="col-flex header">
+      <h1>{{class.classLocation}} {{date | DayMonth}}</h1>
+      <h2>{{class.days | DayOfWeek}}</h2>
+    </div>
+    <div class="col-flex">
+      <h3>{{class.prices | Currency}}</h3>
+      <app-custom-button [text]="'Cancel Class'" (click)="cancelClassModal()"></app-custom-button>
+    </div>
+  </div>
+  <div class="flex">
+    <div class="col-flex header">
+      <h3 class="client-list">Client List</h3>
+      <div *ngFor="let client of class.clients" class="flex">
+        <input class="checkbox" type="checkbox" (change)="checkInClient(client._id, $event)">
+        <p>{{client.firstName}} {{client.lastName}}</p>
+      </div>
+      <div *ngIf="!class.clients.length">
+        <p>You have no clients in this class yet</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-custom-modal 
+  [showModal]="showCancelModal"
+  [title]="'You are about to cancel this class'" 
+  [content]="'This action cannot be undone. Are you sure you want to cancel this class?'"
+  [buttons]="cancelClassButtons">
+  <div content>
+    <input type="checkbox">
+  </div>
+</app-custom-modal>
