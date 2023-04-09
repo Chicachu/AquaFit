@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
-import { ClassDetailsComponent } from './admin/class-details/class-details.component';
+import { ClassDetailsComponent } from './admin/classes/class-details/class-details.component';
 import { ClassesComponent } from './admin/classes/classes.component';
 import { ClientDetailsComponent } from './admin/clients/client-details/client-details.component';
 import { ClientsComponent } from './admin/clients/clients.component';

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ClassDetailsComponent } from './class-details/class-details.component';
+import { ClassDetailsComponent } from './classes/class-details/class-details.component';
 import { AdminComponent } from './admin.component';
 import { CalendarModule } from 'src/app/shared/calendar/calendar.module';
 import { SharedModule } from 'src/app/shared/shared.module';

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Role } from 'src/app/types/enums/role';
-import { CustomInputType } from '../../../shared/custom-input/custom-input-type';
+import { CustomInputType } from '../../../shared/components/custom-input/custom-input-type';
 import { SharedService } from '../../../shared/shared.service';
 import { UserUpdateService } from '../../userUpdate.service';
 import { AuthenticationService } from '../authentication.service';

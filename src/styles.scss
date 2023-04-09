@@ -1,5 +1,6 @@
 @import 'colors.scss';
 @import 'toastr.scss';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
 $content-width: 931px;
 $footer-height: 290px;
@@ -107,6 +108,79 @@ a:hover, a:link {
   left: 45% !important;
 }
 
+// Datepicker styles
+.cdk-overlay-container {
+  z-index: 99999;
+}
+
+.mat-mdc-text-field-wrapper {
+  width: 196px !important;
+  height: 28px !important;
+}
+
+.mat-mdc-form-field-flex, .mat-mdc-form-field-infix {
+  min-height: 30px !important;
+  height: 30px !important;
+}
+
+.mat-mdc-text-field-wrapper:not(.mdc-text-field--outlined) .mat-mdc-form-field-infix {
+  padding: 0 !important;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: white !important;
+}
+
+.mat-mdc-form-field-focus-overlay {
+  background-color: $green;
+}
+
+.mat-mdc-form-field.mat-focused .mat-mdc-form-field-focus-overlay {
+  opacity: .04;
+}
+
+.mdc-text-field--filled .mdc-line-ripple::after {
+  border-bottom: none;
+}
+
+.mdc-text-field--no-label:not(.mdc-text-field--textarea) .mat-mdc-form-field-input-control.mdc-text-field__input, .mat-mdc-text-field-wrapper .mat-mdc-form-field-input-control {
+  position: relative; 
+  top: 6px;
+}
+
+.mat-datepicker-toggle-active {
+  color: $green !important;
+}
+
+.mat-calendar-body-selected {
+  background-color: $green;
+}
+
+.mat-calendar-body-cell:not(.mat-calendar-body-disabled):hover>.mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
+  background-color: rgba($green, 0.4) !important;
+}
+
+.mat-calendar-body-cell {
+  border: 1px solid darkgreen I !important;
+}
+
+.mat-calendar-body-today:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
+  border: 1px solid darkgreen !important;
+  background-color: none !important;
+}
+
+.mat-calendar-body-today {
+  background-color: rgba($green, 0.2) !important;
+}
+
+.mat-mdc-icon-button .mat-mdc-button-persistent-ripple::before {
+  background-color: rgba($green, 0.4) !important;
+}
+
+.mat-datepicker-content .mat-calendar {
+  width: 200px;
+  height: 255px;
+}
 
 @media only screen and (min-width: 768px) {
   .inner-content-container {

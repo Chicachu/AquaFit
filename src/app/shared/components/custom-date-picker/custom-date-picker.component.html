@@ -1,0 +1,16 @@
+<div>
+  <div class="custom-input-container" tabindex="-1" [ngClass]="{error: error}">
+    <div class="label-container">
+      <label for="{{id}}" class="light-text-shadow">{{label}}</label>
+      <label class="asterisk">{{asterisk}}</label>
+      <div class="partial-border-container">
+        <div class="partial-border"></div>
+      </div>
+    </div>
+    <mat-form-field appearance="fill">
+      <input matInput [matDatepicker]="picker">
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+</div>

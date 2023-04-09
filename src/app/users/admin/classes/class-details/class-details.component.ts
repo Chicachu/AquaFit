@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SharedService } from 'src/app/shared/shared.service';
-import { Class } from '../../../types/class';
-import { AdminService } from '../admin.service';
+import { Class } from '../../../../types/class';
+import { AdminService } from '../../admin.service';
 
 @Component({
   selector: 'app-class-details',

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CustomInputType } from 'src/app/shared/custom-input/custom-input-type';
+import { CustomInputType } from 'src/app/shared/components/custom-input/custom-input-type';
 import { SharedService } from 'src/app/shared/shared.service';
 import { Class } from 'src/app/types/class';
 import { Client } from 'src/app/types/client';
@@ -105,6 +105,7 @@ export class ClassesComponent implements OnInit {
       next: (rsp) => {
         this.showAddClassModal = false
         this._sharedService.showSuccess(`Successfully added a class at ${rsp.classLocation} - ${rsp.startTime.time} ${rsp.startTime.meridiem}, ${rsp.days}`)
+        this.getClasses()
       }, 
       error: ({error}) => {
         this._sharedService.showError(error.message)

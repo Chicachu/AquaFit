@@ -48,6 +48,10 @@
         [error]="addClassForm.controls['classStartTime'].invalid && addClassForm.controls['classStartTime'].touched">
       </app-custom-select>
     </div>
+    <div class="flex">
+      <app-custom-date-picker [label]="'Start Date'"></app-custom-date-picker>
+      <app-custom-date-picker [label]="'End Date'"></app-custom-date-picker>
+    </div>
     <h1>Who</h1>
     <div class="flex">
       <app-custom-input 

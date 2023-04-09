@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CustomInputType } from '../../../shared/custom-input/custom-input-type';
+import { CustomInputType } from '../../../shared/components/custom-input/custom-input-type';
 
 @Component({
   selector: 'app-register',

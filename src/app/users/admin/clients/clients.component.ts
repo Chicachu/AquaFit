@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CustomInputType } from 'src/app/shared/custom-input/custom-input-type';
+import { CustomInputType } from 'src/app/shared/components/custom-input/custom-input-type';
 import { SharedService } from 'src/app/shared/shared.service';
 import { Client } from 'src/app/types/client';
 import { AdminService } from '../admin.service';
