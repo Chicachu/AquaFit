@@ -2,21 +2,38 @@ import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpEvent, HttpResponse, HttpRequest, HttpHandler } from '@angular/common/http';
 import { finalize, Observable } from 'rxjs';
 import { LoaderService } from 'src/app/shared/loader/loader.service';
+import { UserUpdateService } from '../userUpdate.service';
 
 @Injectable()
 export class UserHttpInterceptor implements HttpInterceptor {
   totalRequests = 0
 
-  constructor(private _loaderService: LoaderService) { }
+  constructor(private _loaderService: LoaderService, private _userUpdateService: UserUpdateService) { }
 
   intercept(httpRequest: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this._loaderService.setLoading(true)
     this.totalRequests++
-    httpRequest.headers.set('Access-Control-Allow-Origin', '*')
-    httpRequest.headers.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-    httpRequest.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
-    httpRequest.headers.set('Content-Type', 'application/json')
-    httpRequest.headers.set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiM2Y2YmU2Yi02MzIwLTRkM2YtYmJkNy1hYjI2ZWM0NGVjYTkiLCJpYXQiOjE2Nzc2NDUwMDZ9.9Igd1Rg06QKc5YGFKdnYV-3DcDPvR1dlgZXeI7t9NF4')
+    console.log(this._userUpdateService.user?.accessToken!)
+
+    httpRequest = httpRequest.clone({
+      setHeaders: {
+        'Access-Control-Allow-Origin': 'http://localhost:4200',
+        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, Access-Control-Headers, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        'Content-Type': 'application/json'
+      }
+    })
+
+    if (this._userUpdateService.user?.accessToken) {
+      httpRequest = httpRequest.clone({
+        setHeaders: {
+          'Authorization': 'Bearer ' + this._userUpdateService.user?.accessToken!
+        }
+      })
+    }
+
+    console.log(httpRequest)
+
     return next.handle(httpRequest).pipe(
       finalize(() => {
         this.totalRequests--

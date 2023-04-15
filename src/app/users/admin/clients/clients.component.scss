@@ -8,13 +8,16 @@
 
 .class-container, .client-container {
   justify-content: start;
-  width: 25vw;
+  width: 20vw;
   min-height: 100%;
+  align-items: start;
+  padding: 0 30px;
 }
 
 h1 {
   margin: 0px;
-  color: $dark-blue;
+  color: $green;
+  font-weight: bold;
 }
 
 .green {
@@ -27,16 +30,14 @@ h1 {
 }
 
 .client-list p, .class-list a {
-  font-size: 20px;
+  font-size: 16px;
+  margin-bottom: 0;
 }
 
 .class-list a {
   font-weight: bold;
   cursor: pointer;
-}
-
-.class-list {
-  min-width: 30%;
+  margin: 5px;
 }
 
 .pink {
@@ -51,6 +52,7 @@ h1 {
 .class-header {
   margin-top: 10px;
   border-bottom: 2px solid $dark-blue;
+  width: 100%;
 }
 
 .form-group h1 {

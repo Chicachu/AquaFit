@@ -2,10 +2,10 @@
 <div *ngIf="class" class="col-flex">
   <div class="flex top-header">
     <div class="col-flex header">
-      <h1>{{class.classLocation}} {{date | DayMonth}}</h1>
+      <h1>{{class.classLocation}} {{date | DayMonth}} - {{class.startTime.time}} {{class.startTime.meridiem}}</h1>
       <h2>{{class.days | DayOfWeek}}</h2>
     </div>
-    <div class="col-flex">
+    <div class="col-flex currency">
       <h3>{{class.prices | Currency}}</h3>
       <app-custom-button [text]="'Cancel Class'" (click)="cancelClassModal()"></app-custom-button>
     </div>
@@ -14,7 +14,7 @@
     <div class="col-flex header">
       <div class="flex client-list">
         <h3>Client List</h3>
-        <app-custom-button [text]="'+'" (click)="addClientToClass()" class="add-client-button"></app-custom-button>
+        <app-custom-button [text]="'+'" (click)="addClientToClassModal()" class="add-client-button"></app-custom-button>
       </div>
       <div *ngFor="let client of class.clients" class="flex">
         <input class="checkbox" type="checkbox" (change)="checkInClient(client._id, $event)">
@@ -45,4 +45,12 @@
   <div content>
     <input type="checkbox">
   </div>
+</app-custom-modal>
+
+<app-custom-modal
+  [showModal]="showAddClientToClassModal"
+  [title]="'Add client to class'"
+  [content]="'Choose a client to add to this class.'"
+  [buttons]="addClientToClassButtons">
+
 </app-custom-modal>

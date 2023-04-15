@@ -11,7 +11,7 @@
   </div>
   <div class="col-flex client-container">
     <div class="class-header">
-      <h1 *ngIf="!clients">Select a class to see clients</h1>
+      <h1 *ngIf="!clients">Select a class for info</h1>
       <h1 *ngIf="clients">Clients in {{getClassDisplayName(selectedClass)}}</h1>
     </div>
     <div *ngFor="let client of clients" class="flex client-list">
@@ -49,8 +49,12 @@
       </app-custom-select>
     </div>
     <div class="flex">
-      <app-custom-date-picker [label]="'Start Date'"></app-custom-date-picker>
-      <app-custom-date-picker [label]="'End Date'"></app-custom-date-picker>
+      <app-custom-date-picker [label]="'Start Date'" [required]="true"
+        formControlName="startDate" [error]="addClassForm.controls['startDate'].invalid && addClassForm.controls['startDate'].touched">
+      </app-custom-date-picker>
+      <app-custom-date-picker [label]="'End Date'" [required]="true"
+      formControlName="endDate" [error]="addClassForm.controls['endDate'].invalid && addClassForm.controls['endDate'].touched">
+      </app-custom-date-picker>
     </div>
     <h1>Who</h1>
     <div class="flex">

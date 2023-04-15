@@ -178,8 +178,12 @@ a:hover, a:link {
 }
 
 .mat-datepicker-content .mat-calendar {
-  width: 200px;
-  height: 255px;
+  width: 200px !important;
+  height: 255px !important;
+}
+
+.mat-mdc-button-touch-target {
+  display: none;
 }
 
 @media only screen and (min-width: 768px) {

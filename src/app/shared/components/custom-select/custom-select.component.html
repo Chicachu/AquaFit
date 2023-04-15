@@ -7,9 +7,9 @@
         <div class="partial-border"></div>
       </div>
     </div>
-    <select class="input-box" name="{{id}}" id="{{id}}" (change)="onChange($event)">
-      <option value="" selected disabled hidden>Select</option>
-      <option *ngFor="let value of values" value="{{value}}">{{value}}</option>
+    <select class="input-box" name="{{id}}" id="{{id}}" (change)="onChange($event)" (blur)="touched()">
+      <option value="null" [selected]="selectedValue === null" disabled hidden>Select</option>
+      <option *ngFor="let value of values" value="{{value}}" [selected]="isSelected(value)">{{value}}</option>
     </select>
   </div>
 </div>

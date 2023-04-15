@@ -31,6 +31,12 @@ export class CustomSelectComponent implements ControlValueAccessor {
       this.asterisk = '*'
     }
   }
+  
+  set val(val: string) {
+    this.selectedValue = val
+    this.changed(val)
+    this.touched()
+  }
 
   writeValue(value: string): void {
     this.selectedValue = value
@@ -38,6 +44,10 @@ export class CustomSelectComponent implements ControlValueAccessor {
 
   setDisabledState?(isDisabled: boolean): void {
     
+  }
+
+  isSelected(value: string) {
+    return value === this.selectedValue
   }
 
   registerOnChange(fn: any): void {
@@ -50,6 +60,7 @@ export class CustomSelectComponent implements ControlValueAccessor {
 
   onChange(event: Event) {
     const value: string = (<HTMLInputElement>event.target).value
+    this.selectedValue = value
     this.changed(value)
   }
 }

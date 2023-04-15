@@ -7,6 +7,6 @@
         <div class="partial-border"></div>
       </div>
     </div>
-    <input class="input-box" type="{{type}}" name="{{id}}" id="{{id}}" (input)="onChange($event)" (blur)="touched()" value="{{value}}" [placeholder]="placeholder"/>
+    <input class="input-box" type="{{type}}" name="{{id}}" id="{{id}}" (input)="onChange($event)" (blur)="touched()" value="{{value}}" [(ngModel)]="val" [placeholder]="placeholder"/>
   </div>
 </div>

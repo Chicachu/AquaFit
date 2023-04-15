@@ -10,12 +10,20 @@
 
 h1 {
   font-weight: bold;
+  color: $green;
 }
 
 h2 {
   margin-top: -10px;
   padding-top: 10px;
   border-top: 3px solid $dark-blue;
+  font-size: 20px;
+  padding-left: 15px;
+  width: 400px;
+}
+
+.currency h3 {
+  color: $pink;
 }
 
 .top-header {
@@ -50,6 +58,11 @@ p {
 .client-list-list {
   align-items: flex-start;
   width: 50%;
+  margin-top: 40px;
+}
+
+.client-list-list h3 {
+  color: $dark-blue;
 }
 
 .add-client-button {

@@ -81,7 +81,6 @@ export class ClassesComponent implements OnInit {
   }
 
   addClass() {
-    console.log(this.addClassForm)
     let days: DayOfWeek[] = []
     if (this.addClassForm.controls['classDays'].value === ScheduleDays.MON_WED_FRI) {
       days = [DayOfWeek.MONDAY, DayOfWeek.WEDNESDAY, DayOfWeek.FRIDAY]
@@ -91,6 +90,8 @@ export class ClassesComponent implements OnInit {
     const newClass = {
       location: this.addClassForm.controls['classLocation'].value,
       days, 
+      startDate: new Date(this.addClassForm.controls['startDate'].value),
+      endDate: new Date(this.addClassForm.controls['endDate'].value),
       startTime: {
         time: parseInt(this.addClassForm.controls['classStartTime'].value.split(' ')[0]),
         meridiem: this.addClassForm.controls['classStartTime'].value.split(' ')[1]
@@ -119,6 +120,8 @@ export class ClassesComponent implements OnInit {
   }
 
   addClassModal(): void {
+    console.log("resetting form")
+    this.addClassForm.reset()
     this.showAddClassModal = true
   }
 
@@ -130,6 +133,8 @@ export class ClassesComponent implements OnInit {
       maxAttendees: new FormControl('', [Validators.required]),
       pricePesos: new FormControl('', [Validators.required]),
       priceDollars: new FormControl('', [Validators.required]),
+      startDate: new FormControl('', [Validators.required]),
+      endDate: new FormControl('', [Validators.required])
     })
   }
 }

@@ -18,20 +18,26 @@ export class CustomInputComponent implements ControlValueAccessor {
   @Input() type: CustomInputType
   @Input() id: string
   @Input() label: string
-  @Input() value: string = ''
   @Input() placeholder: string = ''
   @Input() required: boolean
   @Input() error: boolean
+  value = ''
+  asterisk = ''
 
   public changed: (value: any) => void
   public touched: () => void
 
-  asterisk = ''
 
   ngOnInit() {
     if (this.required) {
       this.asterisk = '*'
     }
+  }
+
+  set val(val: string) {
+    this.value = val
+    this.changed(val)
+    this.touched()
   }
   
   writeValue(value: string): void {

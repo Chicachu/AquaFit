@@ -18,6 +18,11 @@ export class ClassDetailsComponent implements OnInit {
     { text: 'Back', event: () => { this.showCancelModal = false } },
     { text: 'Yes Cancel Class', event: this.cancelClass.bind(this) },
   ]
+  showAddClientToClassModal = false
+  addClientToClassButtons = [
+    { text: 'Back', event: () => { this.showAddClientToClassModal = false } },
+    { text: 'Yes Cancel Class', event: this.addClientToClass.bind(this) },
+  ]
 
   constructor(private _route: ActivatedRoute, private _adminService: AdminService, private _sharedService: SharedService) {
     this.classId = this._route.snapshot.params['classId'];
@@ -46,6 +51,10 @@ export class ClassDetailsComponent implements OnInit {
 
   addClientToClass(): void {
 
+  }
+
+  addClientToClassModal(): void {
+    this.showAddClientToClassModal = true
   }
 
   checkInClient(clientId: string, checkIn: Event) {

@@ -31,7 +31,6 @@ export class ClientsComponent {
   getClients() {
     this._adminService.getAllClients().subscribe({
       next: (rsp) => {
-        console.log(rsp)
         this.clients = rsp
       }, 
       error: ({error}) => {
@@ -41,6 +40,7 @@ export class ClientsComponent {
   }
 
   addClientModal(): void {
+    this.initializeAddClientForm()
     this.showAddClientModal = true
   }
 
@@ -54,7 +54,6 @@ export class ClientsComponent {
   }
 
   addClient(): void {
-    console.log(this.addClientForm)
     const newClient = {
       firstName: this.addClientForm.controls['firstName'].value,
       lastName: this.addClientForm.controls['lastName'].value,

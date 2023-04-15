@@ -37,8 +37,7 @@ export class AdminService {
     return this._http.get<Class>(`${httpBaseUrl}/classes/${classId}/${date.getTime()}`).pipe(take(1))
   }
 
-  addNewClass(newClass: {location: string, days: DayOfWeek[], startTime: { time: number, meridiem: Meridiem }, maxAttendees: number, prices: {currency: Currency, value: number}[]}): Observable<Class> {
-    console.log(newClass)
+  addNewClass(newClass: {location: string, days: DayOfWeek[], startDate: Date, endDate: Date, startTime: { time: number, meridiem: Meridiem }, maxAttendees: number, prices: {currency: Currency, value: number}[]}): Observable<Class> {
     return this._http.post<Class>(`${httpBaseUrl}/classes`, newClass).pipe(take(1))
   }
 
