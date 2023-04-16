@@ -120,7 +120,6 @@ export class ClassesComponent implements OnInit {
   }
 
   addClassModal(): void {
-    console.log("resetting form")
     this.addClassForm.reset()
     this.showAddClassModal = true
   }

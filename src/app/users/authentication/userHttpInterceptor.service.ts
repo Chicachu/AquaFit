@@ -13,8 +13,7 @@ export class UserHttpInterceptor implements HttpInterceptor {
   intercept(httpRequest: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this._loaderService.setLoading(true)
     this.totalRequests++
-    console.log(this._userUpdateService.user?.accessToken!)
-
+    
     httpRequest = httpRequest.clone({
       setHeaders: {
         'Access-Control-Allow-Origin': 'http://localhost:4200',
@@ -31,8 +30,6 @@ export class UserHttpInterceptor implements HttpInterceptor {
         }
       })
     }
-
-    console.log(httpRequest)
 
     return next.handle(httpRequest).pipe(
       finalize(() => {

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { SharedService } from 'src/app/shared/shared.service';
+import { Client } from 'src/app/types/client';
 import { Class } from '../../../../types/class';
 import { AdminService } from '../../admin.service';
 
@@ -13,6 +15,8 @@ export class ClassDetailsComponent implements OnInit {
   classId: string
   class: Class
   date: Date
+  clients: string[]
+  addClientForm: FormGroup
   showCancelModal = false
   cancelClassButtons = [
     { text: 'Back', event: () => { this.showCancelModal = false } },
@@ -36,6 +40,9 @@ export class ClassDetailsComponent implements OnInit {
     if (!this.class) {
       this.getClass()
     }
+
+    this.getClients()
+    this.initializeClientForm()
   }
 
   getClass() {
@@ -49,11 +56,23 @@ export class ClassDetailsComponent implements OnInit {
     })
   }
 
+  getClients() {
+    this._adminService.getAllClients().subscribe({
+      next: (rsp: any) => {
+        this.clients = rsp.map((c: Client) => c.firstName + ' ' + c.lastName)
+      }, 
+      error: ({error}) => {
+        this._sharedService.showError(error.message)
+      }
+    })
+  }
+
   addClientToClass(): void {
 
   }
 
   addClientToClassModal(): void {
+    this.addClientForm.reset()
     this.showAddClientToClassModal = true
   }
 
@@ -73,6 +92,12 @@ export class ClassDetailsComponent implements OnInit {
   cancelClass() {
     this.showCancelModal = false
     this._adminService.cancelClass(this.classId, this.date.getDate(), this.date.getMonth(), this.date.getFullYear(), true)
+  }
+
+  initializeClientForm() {
+    this.addClientForm = new FormGroup({
+      clientToAdd: new FormControl('', [Validators.required])
+    })
   }
 
   ngOnDestroy() {

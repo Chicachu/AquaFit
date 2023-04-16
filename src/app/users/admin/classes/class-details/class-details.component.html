@@ -48,9 +48,16 @@
 </app-custom-modal>
 
 <app-custom-modal
+  *ngIf="clients"
   [showModal]="showAddClientToClassModal"
   [title]="'Add client to class'"
   [content]="'Choose a client to add to this class.'"
   [buttons]="addClientToClassButtons">
-
+  <div content [formGroup]="addClientForm">
+    <app-custom-search-select 
+      [id]="'clients'" [label]="'Select Client'" 
+      [required]="true" formControlName="clientToAdd" [values]="clients"
+      [error]="addClientForm.controls['clientToAdd'].invalid && addClientForm.controls['clientToAdd'].touched">
+    </app-custom-search-select>
+  </div>
 </app-custom-modal>

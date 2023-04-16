@@ -1,0 +1,17 @@
+<div>
+  <div class="custom-input-container" tabindex="-1" [ngClass]="{error: error}">
+    <div class="label-container">
+      <label for="{{id}}" class="light-text-shadow">{{label}}</label>
+      <label class="asterisk">{{asterisk}}</label>
+      <div class="partial-border-container">
+        <div class="partial-border"></div>
+      </div>
+    </div>
+    <input class="input-box" type="text" name="{{id}}" id="{{id}}" (input)="onChange($event)" (focus)="toggleDropDown(true)" (blur)="touched()" value="{{value}}" [(ngModel)]="val" [placeholder]="placeholder"/>
+    <div class="select-dropdown-list" id="{{id}}_dropdown">
+      <div *ngFor="let value of filteredValues">
+        <a (click)="onSelect(value)">{{value}}</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { CustomSearchSelectComponent } from './custom-search-select/custom-search-select.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { FormsModule } from '@angular/forms';
     CustomButtonComponent,
     CustomModalComponent,
     CustomSelectComponent,
-    CustomDatePickerComponent
+    CustomDatePickerComponent,
+    CustomSearchSelectComponent
   ],
   providers: [
     MatDatepickerModule
@@ -29,14 +31,15 @@ import { FormsModule } from '@angular/forms';
     MatMomentDateModule,
     MatDatepickerModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
   ],
   exports: [
     CustomInputComponent,
     CustomButtonComponent,
     CustomModalComponent,
     CustomSelectComponent,
-    CustomDatePickerComponent
+    CustomDatePickerComponent,
+    CustomSearchSelectComponent
   ]
 })
 export class ComponentsModule { }
