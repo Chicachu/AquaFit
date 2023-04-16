@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, take } from 'rxjs';
+import { Observable, of, pipe, take } from 'rxjs';
 import { Client } from 'src/app/types/client';
 import { Currency } from 'src/app/types/enums/currency';
 import { DayOfWeek } from 'src/app/types/enums/dayOfWeek';
 import { Meridiem } from 'src/app/types/enums/meridiem';
 import { httpBaseUrl } from 'src/environments/constants';
 import { Class } from '../../types/class';
+import { Schedule } from 'src/app/types/schedule';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,16 @@ export class AdminService {
 
   addNewClient(newClient: {firstName: string, lastName: string, phoneNumber: string, email?: string}): Observable<Client> {
     return this._http.post<Client>(`${httpBaseUrl}/clients`, newClient)
+  }
+  
+  addClientToClass(classId: string, clientId: string, sessions: number, startDate: Date): Observable<Schedule> {
+    const addClientToClassRequest = {
+      classId, 
+      clientId, 
+      sessions, 
+      startDate
+    }
+    return this._http.post<Schedule>(`${httpBaseUrl}/schedules/`, addClientToClassRequest).pipe(take(1))
   }
 
   getClass(classId: string, day: number, month: number, year: number): Observable<Class> {

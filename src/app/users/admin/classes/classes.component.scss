@@ -4,14 +4,23 @@
   justify-content: center;
   min-height: 100%;
   align-items: stretch;
+  min-height: calc(100% - 45px);
 }
 
 .class-container, .client-container {
   justify-content: start;
   width: 20vw;
-  min-height: 100%;
   align-items: start;
   padding: 0 30px;
+  background-color: $pale-blue;
+}
+
+.class-container {
+  border-left: solid 4px $dark-blue;
+}
+
+.client-container {
+  border-right: solid 4px $dark-blue;
 }
 
 h1 {

@@ -19,6 +19,9 @@
       <p *ngIf="isEnrolled(client._id)" class="green">&nbsp;enrolled</p>
       <p *ngIf="!isEnrolled(client._id)" class="red">&nbsp;not enrolled</p>
     </div>
+    <div class="client-list">
+      <p *ngIf="!!this.clients && !this.clients.length">You have no clients in this class. Go to class details to add clients.</p>
+    </div>
   </div>
 </div>
 

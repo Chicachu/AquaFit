@@ -93,7 +93,9 @@ input {
   top: 28px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  border: solid 1px $dark-blue;
+  border: solid 1px black;
+  max-height: 200px;
+  overflow-y: hidden;
 }
 
 .select-dropdown-list a {

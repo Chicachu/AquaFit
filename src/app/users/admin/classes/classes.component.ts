@@ -68,6 +68,7 @@ export class ClassesComponent implements OnInit {
     this._adminService.getClients(classInfo._id).subscribe({
       next: (rsp: any) => {
         this.clients = rsp.clients
+        console.log(this.clients)
         this.currentClientIds = rsp.currentClientIds
       }, 
       error: ({error}) => {

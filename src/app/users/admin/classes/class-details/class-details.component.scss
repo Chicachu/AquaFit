@@ -4,8 +4,30 @@
   width: 50%;
 }
 
+.outer-container {
+  min-height: calc(100% - 45px);
+}
+
+.details-container {
+  width: 40vw;
+  background-color: $pale-blue;
+  min-height: calc(100vh - 391px);
+  padding: 0 35px;
+  border-left: solid 4px $dark-blue;
+  border-right: solid 4px $dark-blue;
+}
+
 .header {
   align-items: start;
+}
+
+.header > div {
+  width: 100%;
+}
+
+.header h1 {
+  margin: 5px 0;
+  padding: 1px 0;
 }
 
 h1 {
@@ -24,11 +46,14 @@ h2 {
 
 .currency h3 {
   color: $pink;
+  margin-right: 200px;
+  white-space: nowrap;
 }
 
 .top-header {
   justify-content: space-between;
   flex-direction: column;
+  width: 100%;
 }
 
 .client-list {
@@ -59,6 +84,7 @@ p {
   align-items: flex-start;
   width: 50%;
   margin-top: 40px;
+  width: 100%;
 }
 
 .client-list-list h3 {
@@ -67,6 +93,16 @@ p {
 
 .add-client-button {
   margin-left: 15px;
+}
+
+.sessions {
+  width: 100%;
+  justify-content: end;
+}
+
+.sessions span {
+  font-size: 18px;
+  font-weight: bold;
 }
 
 @media only screen and (min-width: 768px) {

@@ -1,7 +1,7 @@
-import { Day } from "../shared/calendar/types/day"
 import { Location } from "../shared/calendar/types/location"
 import { Currency } from "../types/enums/currency"
 import { Client } from "./client"
+import { DayOfWeek } from "./enums/dayOfWeek"
 
 export type Class = {
   _id: string
@@ -10,7 +10,7 @@ export type Class = {
     time: number, 
     meridiem: string
   },
-  days: Day[],
+  days: DayOfWeek[],
   prices: [
     {
       currency: Currency,

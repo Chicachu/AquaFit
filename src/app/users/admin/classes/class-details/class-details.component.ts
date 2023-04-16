@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { SharedService } from 'src/app/shared/shared.service';
 import { Client } from 'src/app/types/client';
 import { Class } from '../../../../types/class';
 import { AdminService } from '../../admin.service';
+import { DateFilterFn } from '@angular/material/datepicker';
+import { DayOfWeek } from 'src/app/types/enums/dayOfWeek';
+import { CustomInputType } from 'src/app/shared/components/custom-input/custom-input-type';
 
 @Component({
   selector: 'app-class-details',
@@ -12,10 +15,12 @@ import { AdminService } from '../../admin.service';
   styleUrls: ['./class-details.component.scss']
 })
 export class ClassDetailsComponent implements OnInit {
+  inputType = CustomInputType
   classId: string
   class: Class
   date: Date
-  clients: string[]
+  clients: Client[]
+  clientNames: string[]
   addClientForm: FormGroup
   showCancelModal = false
   cancelClassButtons = [
@@ -25,7 +30,7 @@ export class ClassDetailsComponent implements OnInit {
   showAddClientToClassModal = false
   addClientToClassButtons = [
     { text: 'Back', event: () => { this.showAddClientToClassModal = false } },
-    { text: 'Yes Cancel Class', event: this.addClientToClass.bind(this) },
+    { text: 'Add Client to Class', event: this.addClientToClass.bind(this) },
   ]
 
   constructor(private _route: ActivatedRoute, private _adminService: AdminService, private _sharedService: SharedService) {
@@ -42,7 +47,6 @@ export class ClassDetailsComponent implements OnInit {
     }
 
     this.getClients()
-    this.initializeClientForm()
   }
 
   getClass() {
@@ -59,7 +63,9 @@ export class ClassDetailsComponent implements OnInit {
   getClients() {
     this._adminService.getAllClients().subscribe({
       next: (rsp: any) => {
-        this.clients = rsp.map((c: Client) => c.firstName + ' ' + c.lastName)
+        this.clients = rsp
+        this.clientNames = rsp.map((c: Client) => c.firstName + ' ' + c.lastName)
+        this.initializeClientForm()
       }, 
       error: ({error}) => {
         this._sharedService.showError(error.message)
@@ -68,7 +74,30 @@ export class ClassDetailsComponent implements OnInit {
   }
 
   addClientToClass(): void {
+    if (!this.addClientForm.valid) {
+      this.addClientForm.markAllAsTouched()
+    } else {
+      const cliendId = this.getClientIdFromName(this.addClientForm.controls['clientToAdd'].value)
+      let sessions = this.getDefaultSessions() 
+      if (this.addClientForm.controls['bonusSessions'].value) {
+        sessions += parseInt(this.addClientForm.controls['bonusSessions'].value)
+      }
+      this._adminService.addClientToClass(this.class._id, cliendId!, sessions, this.addClientForm.controls['startDate'].value).subscribe({
+        next: (rsp) => {
+          this.showAddClientToClassModal = false
+          this._sharedService.showSuccess(`${this.addClientForm.controls['clientToAdd'].value} has been added to this class successfully!`)
+          this.getClass()
+        }, 
+        error: ({error}) => {
+          this._sharedService.showError(error.message)
+        }
+      })
+    }
+  }
 
+  getClientIdFromName(clientFullName: string): string | undefined {
+    const client = this.clients.find((c: Client) => c.firstName + ' ' + c.lastName === clientFullName)
+    return client?._id
   }
 
   addClientToClassModal(): void {
@@ -96,8 +125,34 @@ export class ClassDetailsComponent implements OnInit {
 
   initializeClientForm() {
     this.addClientForm = new FormGroup({
-      clientToAdd: new FormControl('', [Validators.required])
+      clientToAdd: new FormControl('', [Validators.required, this.mustBeIncludedIn(this.clientNames)]),
+      startDate: new FormControl('', [Validators.required]),
+      bonusSessions: new FormControl('', [Validators.pattern('^[0-9]*$')])
     })
+  }
+
+  getDefaultSessions() {
+    return this.class.days.length === 2 ? 8 : 12
+  }
+
+  getAddToClassText() {
+    return this.class ? `Choose a client to add to ${this.class.classLocation} on ` + this.class.days.join(', ') + ` at ${this.class.startTime.time} ${this.class.startTime.meridiem}`: ''
+  }
+
+  dateFilter: DateFilterFn<Date | null> = (d: Date | null): boolean => {
+    if (this.class.days && d) {
+      const dayToCompare = new Date(d)
+      const daysOfWeekArray = Object.values(DayOfWeek)
+      const filteredDatesAsNumbers = this.class.days.map((d) => daysOfWeekArray.indexOf(d))
+      return filteredDatesAsNumbers.includes(dayToCompare.getDay())
+    }
+    return true
+  }
+
+  mustBeIncludedIn(clients: string[]): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      return clients && !clients.includes(control.value) ? {notValidClient: {value: control.value}} : null
+    }
   }
 
   ngOnDestroy() {

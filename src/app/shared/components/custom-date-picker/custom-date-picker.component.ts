@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { DateFilterFn, MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { DayOfWeek } from 'src/app/types/enums/dayOfWeek';
 
 @Component({
   selector: 'app-custom-date-picker',
@@ -18,6 +19,7 @@ export class CustomDatePickerComponent implements ControlValueAccessor {
   @Input() id: string
   @Input() label: string
   @Input() required: boolean
+  @Input() dateFilter: DateFilterFn<Date | null>
   @Input() error: boolean
   value: Date 
   asterisk = ''

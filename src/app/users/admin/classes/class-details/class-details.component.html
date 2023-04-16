@@ -1,37 +1,43 @@
 <app-navigation-bar></app-navigation-bar>
-<div *ngIf="class" class="col-flex">
-  <div class="flex top-header">
-    <div class="col-flex header">
-      <h1>{{class.classLocation}} {{date | DayMonth}} - {{class.startTime.time}} {{class.startTime.meridiem}}</h1>
-      <h2>{{class.days | DayOfWeek}}</h2>
-    </div>
-    <div class="col-flex currency">
-      <h3>{{class.prices | Currency}}</h3>
-      <app-custom-button [text]="'Cancel Class'" (click)="cancelClassModal()"></app-custom-button>
-    </div>
-  </div>
-  <div class="col-flex client-list-list">
-    <div class="col-flex header">
-      <div class="flex client-list">
-        <h3>Client List</h3>
-        <app-custom-button [text]="'+'" (click)="addClientToClassModal()" class="add-client-button"></app-custom-button>
+<div *ngIf="class" class="col-flex outer-container">
+  <div class="details-container">
+    <div class="flex top-header">
+      <div class="col-flex header">
+        <h1 class="pink">{{date | DayMonth}}</h1>
+        <div class="flex">
+          <h1>{{class.classLocation}} - {{class.startTime.time}} {{class.startTime.meridiem}}</h1>
+          <app-custom-button [text]="'Cancel Class'" (click)="cancelClassModal()" class="add-client-button"></app-custom-button>
+        </div>
+        <h2>{{class.days | DayOfWeek}}</h2>
       </div>
-      <div *ngFor="let client of class.clients" class="flex">
-        <input class="checkbox" type="checkbox" (change)="checkInClient(client._id, $event)">
-        <p>{{client.firstName}} {{client.lastName}}</p>
-      </div>
-      <div *ngIf="!class.clients.length">
-        <p>You have no clients in this class yet</p>
+      <div class="col-flex currency">
+        <h3>{{class.prices | Currency}}</h3>
       </div>
     </div>
-    <div class="col-flex header">
-      <h3 class="client-list">Waitlist</h3>
-      <div *ngFor="let client of class.clients" class="flex">
-        <input class="checkbox" type="checkbox" (change)="checkInClient(client._id, $event)">
-        <p>{{client.firstName}} {{client.lastName}}</p>
+    <div class="col-flex client-list-list">
+      <div class="col-flex header">
+        <div class="flex client-list">
+          <h3>Client List</h3>
+          <app-custom-button [text]="'+'" (click)="addClientToClassModal()" class="add-client-button"></app-custom-button>
+        </div>
+        <div *ngFor="let client of class.clients" class="flex">
+          <input class="checkbox" type="checkbox" (change)="checkInClient(client._id, $event)">
+          <p>{{client.firstName}} {{client.lastName}}</p>
+        </div>
+        <div *ngIf="!class.clients.length">
+          <p>You have no clients in this class yet.</p>
+        </div>
       </div>
-      <div *ngIf="!class.clients.length">
-        <p>There is no one on the waitlist for this class</p>
+      <div class="col-flex header">
+        <h3 class="client-list">Waitlist</h3>
+        <!--<div *ngFor="let client of class.clients" class="flex">
+          <input class="checkbox" type="checkbox" (change)="checkInClient(client._id, $event)">
+          <p>{{client.firstName}} {{client.lastName}}</p>
+        </div>-->
+        <!--<div *ngIf="!class.clients.length">-->
+        <div>
+          <p>There is no one on the waitlist for this class.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -48,16 +54,27 @@
 </app-custom-modal>
 
 <app-custom-modal
-  *ngIf="clients"
+  *ngIf="clients && class"
   [showModal]="showAddClientToClassModal"
   [title]="'Add client to class'"
-  [content]="'Choose a client to add to this class.'"
+  [content]="getAddToClassText()"
   [buttons]="addClientToClassButtons">
   <div content [formGroup]="addClientForm">
-    <app-custom-search-select 
-      [id]="'clients'" [label]="'Select Client'" 
-      [required]="true" formControlName="clientToAdd" [values]="clients"
-      [error]="addClientForm.controls['clientToAdd'].invalid && addClientForm.controls['clientToAdd'].touched">
-    </app-custom-search-select>
+    <div class="flex">
+      <app-custom-search-select 
+        [id]="'clients'" [label]="'Select Client'" 
+        [required]="true" formControlName="clientToAdd" [values]="clientNames"
+        [error]="addClientForm.controls['clientToAdd'].invalid && addClientForm.controls['clientToAdd'].touched">
+      </app-custom-search-select>
+      <app-custom-date-picker [label]="'Start Date'" [required]="true" [dateFilter]="dateFilter"
+        formControlName="startDate" [error]="addClientForm.controls['startDate'].invalid && addClientForm.controls['startDate'].touched" >
+      </app-custom-date-picker>
+    </div>
+    <div class="flex sessions">
+      <p>Default sessions <span>{{getDefaultSessions()}} +</span> </p>
+      <app-custom-input [type]="inputType.TEXT" [id]="'sessions'" [label]="'Bonus Sessions'" 
+        formControlName="bonusSessions" [error]="addClientForm.controls['bonusSessions'].invalid && addClientForm.controls['bonusSessions'].touched">
+      </app-custom-input>
+    </div>
   </div>
 </app-custom-modal>

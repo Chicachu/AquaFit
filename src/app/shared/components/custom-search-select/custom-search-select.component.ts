@@ -59,7 +59,7 @@ export class CustomSearchSelectComponent implements ControlValueAccessor {
 
   filterValues(searchString: string | undefined | null) {
     if (searchString) {
-      this.filteredValues = this.values.filter((v) => v.includes(searchString))
+      this.filteredValues = this.values.filter((v) => v.toLowerCase().includes(searchString.toLowerCase()))
     } else {
       this.filteredValues = this.values
     }
@@ -71,7 +71,7 @@ export class CustomSearchSelectComponent implements ControlValueAccessor {
       if (show) {
         dropdown.style.display = 'block'
       } else {
-        dropdown.style.display = 'none'
+        setTimeout(() => {dropdown.style.display = 'none'}, 175)
         this.touched()
       }
     }
