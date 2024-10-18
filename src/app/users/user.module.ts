@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProfileComponent } from './profile/profile.component';
 import { UserRoutingModule } from './user-routing.module';
 import { BryntumCalendarModule } from '@bryntum/calendar-angular';
 import { AdminModule } from './admin/admin.module';
-import { RouterModule } from '@angular/router';
+import { ProfileDetailsComponent } from './profile/profile-details.component';
 
 
 
 @NgModule({
   declarations: [
-    ProfileComponent
+    ProfileDetailsComponent
   ],
   imports: [
     AdminModule,

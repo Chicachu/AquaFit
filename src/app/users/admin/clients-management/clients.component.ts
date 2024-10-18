@@ -49,7 +49,7 @@ export class ClientsComponent {
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
       phoneNumber: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.email])
+      email: new FormControl('', [Validators.required, Validators.email])
     })
   }
 

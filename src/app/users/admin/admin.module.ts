@@ -6,8 +6,7 @@ import { CalendarModule } from 'src/app/shared/calendar/calendar.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { ClassesComponent } from './classes/classes.component';
-import { ClientsComponent } from './clients/clients.component';
-import { ClientDetailsComponent } from './clients/client-details/client-details.component';
+import { ClientsComponent } from './clients-management/clients.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -20,7 +19,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     NavigationBarComponent,
     ClassesComponent,
     ClientsComponent,
-    ClientDetailsComponent
   ],
   imports: [
     CalendarModule,

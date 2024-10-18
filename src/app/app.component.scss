@@ -5,7 +5,6 @@
 }
 
 .content {
-  min-height: calc(100vh - $footer-height);
   background: url('../assets/pool-background.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -24,7 +23,7 @@
   $footer-height: 170px;
 
   .content {
-    min-height: calc(100vh - $footer-height);
+    min-height: auto;
   }
 
   .footer {
